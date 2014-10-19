@@ -6,6 +6,7 @@ using namespace irr;
 using namespace core;
 class GameManager;
 struct Movement{
+public:
 	int Id;
 	vector3df dPos;
 	vector3df dRot;
@@ -18,7 +19,7 @@ struct Movement{
 };
 class World{
 public:
-	int CameraObjectId = 0;
+	int PlayerObjectIds[10];
 	int MeshCount;
 	IAnimatedMesh ** Meshes;
 	ICameraSceneNode * Camera;

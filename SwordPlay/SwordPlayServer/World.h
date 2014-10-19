@@ -13,5 +13,8 @@ public:
 	Object ** ObjectArray;
 	World();
 	~World();
+	int AddObject(Object * object, bool candelete = true, bool caninit = true);
+	void Update(ServerManager * sm);
+	void SpawnPlayer(int playerid);
 };
 

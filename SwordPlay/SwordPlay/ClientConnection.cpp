@@ -118,25 +118,31 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	if (((int)event.packet->data[0]) == Sword_Object)
 	{
 		int id = event.packet->data[1];
-		int X = event.packet->data[2];
-		int Y = event.packet->data[3];
-		int Z = event.packet->data[4];
-		int RX = event.packet->data[5];
-		int RY = event.packet->data[6];
-		int RZ = event.packet->data[7];
+		int X = event.packet->data[2] / 10;
+		int Y = event.packet->data[3] / 10;
+		int Z = event.packet->data[4] / 10;
+		int RX = event.packet->data[5] / 10;
+		int RY = event.packet->data[6] / 10;
+		int RZ = event.packet->data[7] / 10;
 		if (gm->world->ObjectArray[id] == NULL)
 		{
-			gm->world->ObjectArray[id] = new Object(gm,(int)event.packet->data[8]);
+			int Mesh = (int)event.packet->data[8];
+			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
+			{
+				//The head of the mesh family
+				Mesh = 0;
+			}
+			gm->world->ObjectArray[id] = new Object(gm, Mesh);
 		}
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
-		if (gm->world->CameraObjectId != -1)
+		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
-			gm->world->MoveCamera(vector3df(X, Y, Z), vector3df(RX, RY, RZ));
+			//gm->world->MoveCamera(vector3df(X, Y, Z), vector3df(RX, RY, RZ));
 		}
 	}
-	if (((int)event.packet->data[0]) == Sword_CameraId)
+	if (((int)event.packet->data[0]) == Sword_PlayerIds)
 	{
-		gm->world->CameraObjectId = (int)event.packet->data[1];
+		gm->world->PlayerObjectIds[event.packet->data[1]] = (int)event.packet->data[2];
 	}
 }

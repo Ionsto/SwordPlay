@@ -1,9 +1,45 @@
-﻿Build started 19/10/2014 18:17:47.
+﻿Build started 19/10/2014 22:53:23.
      1>Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ClientConnection.cpp GameManager.cpp Gui.cpp Main.cpp Object.cpp World.cpp
+         ClientConnection.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.cpp(110): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.cpp(137): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.cpp(138): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+         Generating Code...
+         Compiling...
+         World.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+         Object.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\object.cpp(12): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\object.cpp(68): warning C4244: 'initializing' : conversion from 'irr::f32' to 'int', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\object.cpp(80): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+         Main.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+         Gui.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+         GameManager.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(91): warning C4244: 'initializing' : conversion from 'irr::s32' to 'float', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(92): warning C4244: 'initializing' : conversion from 'irr::s32' to 'float', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(93): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(94): warning C4305: '*=' : truncation from 'double' to 'float'
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(112): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe" /INCREMENTAL /NOLOGO enet.lib Irrlicht.lib ws2_32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.lib" /MACHINE:X86 Debug\ClientConnection.obj
+         Debug\GameManager.obj
+         Debug\Gui.obj
+         Debug\GuiMain.obj
+         Debug\Main.obj
+         Debug\Object.obj
+         Debug\World.obj
+         LINK : C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe not found or not built by the last incremental link; performing full link
          SwordPlay.vcxproj -> C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe
      1>Done Building Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.13
+Time Elapsed 00:00:11.28

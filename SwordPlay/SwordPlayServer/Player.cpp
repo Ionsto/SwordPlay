@@ -3,6 +3,8 @@
 
 Player::Player()
 {
+	for(int i = 0;i < 10;++i)
+		BodyPartIds[i] = -1;
 }
 
 

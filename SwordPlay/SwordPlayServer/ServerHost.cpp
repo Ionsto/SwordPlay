@@ -24,15 +24,13 @@ void ServerHost::GetMessages(ServerManager * sm)
 		switch (event.type)
 		{
 		case ENET_EVENT_TYPE_CONNECT:
-			/*for (int i = 0; i < sm->world->WorldSystemSize;++i)
-			{
-				SendWorldPart(sm,i,event.peer);
-			}
 			player = Player();
 			player.Id = sm->world->Players.size();
-			SendCommand(event.peer, RTS_PLAYERID, new int[] {player.Id}, 1);
-			player.Peer = event.peer;*/
+			player.Peer = event.peer;
 			sm->world->Players.push_back(player);
+			sm->world->SpawnPlayer(player.Id);
+			for (int i = 0; i < 10; ++i)
+				SendCommand(event.peer, Sword_PlayerIds, new int[] {i,player.BodyPartIds[i]}, 2);
 			std::cout << "Player connected\n";
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
@@ -74,16 +72,19 @@ void ServerHost::ParsePacket(ServerManager * sm,ENetEvent event)
 	if (event.packet->data[0] == Sword_MoveObject)
 	{
 		int Id = event.packet->data[1];
-		int dX = event.packet->data[2];
-		int dY = event.packet->data[3];
-		int dZ = event.packet->data[4];
-		int dRX = event.packet->data[2];
-		int dRY = event.packet->data[3];
-		int dRZ = event.packet->data[4];
 		if (Id > 0 && Id < sm->world->ObjectCount)
 		{
 			if (sm->world->ObjectArray[Id] != NULL)
 			{
+				//If the incoming dx actualy changes somthing, override movement
+				for (int i = 0; i < 3; ++i){
+					if (event.packet->data[i + 2] != 0){
+						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] / 10;
+					}
+					if (event.packet->data[i + 5] != 0){
+						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] / 10;
+					}
+				}
 			}
 		}
 	}
@@ -104,9 +105,15 @@ void ServerHost::UpdateAll(ServerManager * sm)
 {
 	for (int i = 0; i < sm->world->Players.size(); ++i)
 	{
-		for (int i = 0; i < sm->world->ObjectCount; ++i)
+		for (int o = 0; o < sm->world->ObjectCount; ++o)
 		{
-
+			if (sm->world->ObjectArray[o] != NULL)
+			{
+				neV3 pos = sm->world->ObjectArray[o]->PhysicsBody->GetPos();
+				neV3 rot = sm->world->ObjectArray[o]->RotationEuler;
+				int args[] = { (int)o, (int)pos[0] * 10, (int)pos[1] * 10, (int)pos[2] * 10, (int)rot[0] * 10, (int)rot[1] * 10, (int)rot[2] * 10, 0, 0 };
+				SendCommand(sm->world->Players[i].Peer, Sword_Object, (int *)args, 9);
+			}
 		}
 	}
 }

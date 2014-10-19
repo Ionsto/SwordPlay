@@ -5,18 +5,22 @@ World::World(GameManager * gm)
 {
 	QuedBodyMovement = vector3df();
 	QuedBodyRotation = vector3df();
-	CameraObjectId = -1;
+	for (int i = 0; i < 10; ++i)
+		PlayerObjectIds[i] = -1;
 	ObjectCount = 100;
 	ObjectArray = new Object*[ObjectCount];
 	for (int i = 0; i < ObjectCount;++i)
 	{
 		ObjectArray[i] = NULL;
 	}
-	MeshCount = 1;
+	MeshCount = 2;
 	Meshes = new IAnimatedMesh*[MeshCount];
-	Meshes[0] = gm->smgr->getMesh("./Res/Player.x");
-	Meshes[0]->setMaterialFlag(EMF_LIGHTING, false);
-	Camera = gm->smgr->addCameraSceneNode(0, vector3df(0, 20, 0));
+	//Lel
+	Meshes[0] = gm->smgr->getMesh("./Res/HeadNull.x"); Meshes[0]->setMaterialFlag(EMF_LIGHTING, false);
+	Meshes[1] = gm->smgr->getMesh("./Res/Head.x"); Meshes[1]->setMaterialFlag(EMF_LIGHTING, false);
+	Meshes[0] = gm->smgr->getMesh("./Res/Arm.x"); Meshes[0]->setMaterialFlag(EMF_LIGHTING, false);
+
+	Camera = gm->smgr->addCameraSceneNode(0, vector3df(0, 20, 0),vector3df(0,0,0));
 	Camera->bindTargetAndRotation(true);
 	Camera->updateAbsolutePosition();
 }

@@ -8,7 +8,7 @@ Object::Object(GameManager * gm,int mesh)
 	PlayerId = -1;
 	Mesh = mesh;
 	Node = gm->smgr->addAnimatedMeshSceneNode(gm->world->Meshes[Mesh]);
-	Node->setMaterialTexture(0, gm->driver->getTexture("./WSD/Rabbit_Skin.png"));
+	Node->setMaterialTexture(0, gm->driver->getTexture("./Res/Arm.png"));
 	Node->setPosition(vector3df(rand() % 30,0, rand() % 30));
 	Node->setFrameLoop(0, 60);
 	AnimationCount = 4;

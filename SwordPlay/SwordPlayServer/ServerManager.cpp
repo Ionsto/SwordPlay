@@ -16,8 +16,8 @@ void ServerManager::Init()
 	std::cout << "Initilising\n";
 	enet_initialize();
 	std::cout << "Genn'ing world\n";
-	/*world = new World();
-	world->GenerateWorld();
+	world = new World();
+	/*world->GenerateWorld();
 	world->AddObject(new Object());
 	world->ObjectArray[0]->Position = Vector2(4, 4);
 	world->AddObject(new Object());
@@ -41,7 +41,7 @@ void ServerManager::Run()
 
 void ServerManager::Update()
 {
-	//world->Update(this);
+	world->Update(this);
 }
 void ServerManager::SendClientInfo()
 {
