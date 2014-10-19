@@ -2,7 +2,7 @@
 
 
 World::World()
-{/*
+{
 	neSimulatorSizeInfo sizeInfo;
 	RigidBodyCount = 100;
 	ObjectCount = 20;
@@ -17,11 +17,11 @@ World::World()
 	sizeInfo.rigidParticleCount = 0;
 
 	//all information gathered. So create the simulator:
-	m_Sim = neSimulator::CreateSimulator(sizeInfo, NULL, &gravity);*/
+	m_Sim = neSimulator::CreateSimulator(sizeInfo, NULL, &gravity);
 }
 
 
 World::~World()
 {
-	//neSimulator::DestroySimulator(m_Sim);
+	neSimulator::DestroySimulator(m_Sim);
 }

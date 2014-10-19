@@ -3,7 +3,7 @@
 
 Object::Object(World * world)
 {
-	//PhysicsBody = world->m_Sim->CreateRigidBody();
+	PhysicsBody = world->m_Sim->CreateRigidBody();
 }
 
 
