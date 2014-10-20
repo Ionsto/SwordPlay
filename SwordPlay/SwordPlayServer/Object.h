@@ -9,6 +9,7 @@ public:
 	neV3 QuedMovePos;
 	neV3 QuedMoveRot;
 	neV3 RotationEuler;
+	neGeometry * geom;
 	neRigidBody * PhysicsBody;
 	Object(World * world, bool init = false, float x = 0, float y = 0, float z = 0);
 	~Object();

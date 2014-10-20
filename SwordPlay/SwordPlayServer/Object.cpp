@@ -23,6 +23,17 @@ void Object::Init(World * world,float x,float y,float z)
 	PhysicsBody->SetPos(pos);
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
+	neV3 size; size.Set(5, 5, 5);
+	geom = PhysicsBody->AddGeometry();
+	geom->SetBoxSize(size);
+	geom->SetMaterialIndex(1);
+	PhysicsBody->UpdateBoundingInfo();
+	float mass;
+	mass = 10.0f;
+	PhysicsBody->SetInertiaTensor(neSphereInertiaTensor(0.8f, mass));
+	PhysicsBody->SetMass(mass);
+	PhysicsBody->SetAngularDamping(0.01f);
+
 }
 void Object::Update(World * world)
 {

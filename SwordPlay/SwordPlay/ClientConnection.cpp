@@ -127,6 +127,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 		if (gm->world->ObjectArray[id] == NULL)
 		{
 			int Mesh = (int)event.packet->data[8];
+			if (Mesh < 0){ Mesh = 0; }
+			if (Mesh > gm->world->MeshCount){ Mesh = gm->world->MeshCount - 1; }
 			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
 			{
 				//The head of the mesh family
@@ -134,6 +136,7 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 			}
 			gm->world->ObjectArray[id] = new Object(gm, Mesh);
 		}
+		std::cout << X << ":" << Y << ":" << Z << "\n";
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
 		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)

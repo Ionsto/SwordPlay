@@ -37,14 +37,14 @@ void ServerHost::GetMessages(ServerManager * sm)
 			Recivevents.push_back(event);
 			break;
 		case ENET_EVENT_TYPE_DISCONNECT:
-			/*for (int i = 0; i < sm->world->Players.size(); ++i)
+			for (int i = 0; i < sm->world->Players.size(); ++i)
 			{
 				if (event.peer->address.host == sm->world->Players.at(i).Peer->address.host)
 				{
 					sm->world->Players.erase(sm->world->Players.begin() + i);
 					std::cout << "player:" << i << " disconnected\n";
 				}
-			}*/
+			}
 			event.peer->data = NULL;
 		}
 	}
@@ -56,12 +56,13 @@ void ServerHost::GetMessages(ServerManager * sm)
 }
 void ServerHost::SendCommand(ENetPeer * peer, int Command, int * Args,int argscount)
 {
-	ENetPacket *packet;
+	ENetPacket * packet;
 	int * buffer = new int[argscount + 1];
 	buffer[0] = Command;
 	for (int i = 0; i < argscount; ++i)
 	{
 		buffer[i + 1] = Args[i];
+		std::cout << Command << "," << Args[i] << "\n";
 	}
 	packet = enet_packet_create(buffer, argscount + 1, 0);
 	enet_peer_send(peer, 0, packet);
@@ -109,9 +110,13 @@ void ServerHost::UpdateAll(ServerManager * sm)
 		{
 			if (sm->world->ObjectArray[o] != NULL)
 			{
-				neV3 pos = sm->world->ObjectArray[o]->PhysicsBody->GetPos();
-				neV3 rot = sm->world->ObjectArray[o]->RotationEuler;
-				int args[] = { (int)o, (int)pos[0] * 10, (int)pos[1] * 10, (int)pos[2] * 10, (int)rot[0] * 10, (int)rot[1] * 10, (int)rot[2] * 10, 0, 0 };
+				neV3 pos;pos.Set(sm->world->ObjectArray[o]->PhysicsBody->GetPos());
+				neV3 rot;rot.Set(sm->world->ObjectArray[o]->RotationEuler);
+				int x, y, z;
+				x = (int)pos[0] * 10; y = (int)pos[1] * 10; z = (int)pos[2] * 10;
+				int rx, ry, rz;
+				rx = (int)rot[0] * 10; ry = (int)rot[1] * 10; rz = (int)rot[2] * 10;
+				int args[] = { (int)o, x, y, z, rx, ry, rz, 0, sm->world->ObjectArray[o]->Mesh};
 				SendCommand(sm->world->Players[i].Peer, Sword_Object, (int *)args, 9);
 			}
 		}

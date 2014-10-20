@@ -97,7 +97,7 @@ void GameManager::Update()
 			x = speed;
 		if (y > speed)
 			y = speed;
-		//world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
+		world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
 		KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
 		KeyListener.MouseState.PosChanged = false;
 	}
@@ -114,7 +114,11 @@ void GameManager::UpdateServer()
 			Connector->SendCommands(Sword_MoveObject, new int[]{world->PlayerObjectIds[world->QuedMovment[i].Id], (int)(world->QuedMovment[i].dPos.X * 10), (int)(world->QuedMovment[i].dPos.Y * 10), (int)(world->QuedMovment[i].dPos.Z * 10), (int)(world->QuedMovment[i].dRot.X * 10), (int)(world->QuedMovment[i].dRot.Y * 10), (int)(world->QuedMovment[i].dRot.Z * 10)}, 6);
 		}
 	}
-	Connector->SendCommands(Sword_MovePlayer, new int [] { (int)world->QuedBodyMovement.X * 10, (int)world->QuedBodyMovement.Y * 10, (int)world->QuedBodyMovement.Z * 10, (int)world->QuedBodyRotation.X * 10, (int)world->QuedBodyRotation.Y * 10, (int)world->QuedBodyRotation.Z * 10}, 6);
+	world->QuedMovment.clear();
+	if (world->QuedBodyMovement.X != 0 || world->QuedBodyMovement.Y != 0 || world->QuedBodyMovement.Z != 0)
+	{
+		Connector->SendCommands(Sword_MovePlayer, new int [] { (int)world->QuedBodyMovement.X * 10, (int)world->QuedBodyMovement.Y * 10, (int)world->QuedBodyMovement.Z * 10, (int)world->QuedBodyRotation.X * 10, (int)world->QuedBodyRotation.Y * 10, (int)world->QuedBodyRotation.Z * 10}, 6);
+	}
 	world->QuedBodyMovement = vector3df();
 	world->QuedBodyRotation = vector3df();
 	Connector->GetInfomation(this);
@@ -123,7 +127,7 @@ void GameManager::UpdateServer()
 	{
 		if (world->ObjectArray[world->PlayerObjectIds[Sword_PlayerId_Head]] != NULL)
 		{
-			world->MoveCamera(world->ObjectArray[world->PlayerObjectIds[Sword_PlayerId_Head]]->Node->getAbsolutePosition(), world->ObjectArray[world->PlayerObjectIds[Sword_PlayerId_Head]]->Node->getAbsoluteTransformation().getRotationDegrees());
+			//world->MoveCamera(world->ObjectArray[world->PlayerObjectIds[Sword_PlayerId_Head]]->Node->getAbsolutePosition(), world->ObjectArray[world->PlayerObjectIds[Sword_PlayerId_Head]]->Node->getAbsoluteTransformation().getRotationDegrees());
 		}
 		else
 		{
