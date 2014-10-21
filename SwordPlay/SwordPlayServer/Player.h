@@ -16,9 +16,9 @@ public:
 	LegLowerR = 8;
 	LegLowerL = 9;
 	*/
-	int BodyPartIds[10];
+	int * BodyPartIds;
 	int Id;
-	ENetPeer * Peer;
+	ENetPeer Peer;
 	Player();
 	~Player();
 };

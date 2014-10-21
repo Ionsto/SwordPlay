@@ -94,7 +94,8 @@ void ClientConnection::GetInfomation(GameManager * gm)
 {
 	ENetEvent event;
 	std::vector<ENetEvent> Recivevents;
-	while (enet_host_service(client, &event, 0) > 0)
+	int Count = 0;
+	while (enet_host_service(client, &event, 0) > 0 && Count++ < 60)
 	{
 	switch (event.type) {
 		case ENET_EVENT_TYPE_RECEIVE:
@@ -117,26 +118,26 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 {
 	if (((int)event.packet->data[0]) == Sword_Object)
 	{
-		int id = event.packet->data[1];
-		int X = event.packet->data[2] / 10;
-		int Y = event.packet->data[3] / 10;
-		int Z = event.packet->data[4] / 10;
-		int RX = event.packet->data[5] / 10;
-		int RY = event.packet->data[6] / 10;
-		int RZ = event.packet->data[7] / 10;
+		int id = ((int)event.packet->data[1]);
+		int X = ((int)event.packet->data[2]) / 10;
+		int Y = ((int)event.packet->data[3]) / 10;
+		int Z = ((int)event.packet->data[4]) / 10;
+		int RX = ((int)event.packet->data[5]) / 10;
+		int RY = ((int)event.packet->data[6]) / 10;
+		int RZ = ((int)event.packet->data[7]) / 10;
 		if (gm->world->ObjectArray[id] == NULL)
 		{
 			int Mesh = (int)event.packet->data[8];
+			Mesh = 1;
 			if (Mesh < 0){ Mesh = 0; }
 			if (Mesh > gm->world->MeshCount){ Mesh = gm->world->MeshCount - 1; }
 			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
 			{
 				//The head of the mesh family
-				Mesh = 0;
+				//Mesh = 0;
 			}
 			gm->world->ObjectArray[id] = new Object(gm, Mesh);
 		}
-		std::cout << X << ":" << Y << ":" << Z << "\n";
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
 		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
@@ -146,6 +147,6 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	}
 	if (((int)event.packet->data[0]) == Sword_PlayerIds)
 	{
-		gm->world->PlayerObjectIds[event.packet->data[1]] = (int)event.packet->data[2];
+		gm->world->PlayerObjectIds[(int)event.packet->data[1]] = (int)event.packet->data[2];
 	}
 }

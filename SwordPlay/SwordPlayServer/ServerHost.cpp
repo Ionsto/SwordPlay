@@ -5,6 +5,7 @@
 
 ServerHost::ServerHost()
 {
+	PacketCount = 0;
 }
 
 
@@ -19,33 +20,49 @@ void ServerHost::GetMessages(ServerManager * sm)
 	std::vector<ENetEvent> Recivevents;
 	while (enet_host_service(server, &event, 0) > 0)
 	{
-		Player player;
 		int ClientID = 0;
 		switch (event.type)
 		{
-		case ENET_EVENT_TYPE_CONNECT:
-			player = Player();
-			player.Id = sm->world->Players.size();
-			player.Peer = event.peer;
-			sm->world->Players.push_back(player);
-			sm->world->SpawnPlayer(player.Id);
-			for (int i = 0; i < 10; ++i)
-				SendCommand(event.peer, Sword_PlayerIds, new int[] {i,player.BodyPartIds[i]}, 2);
-			std::cout << "Player connected\n";
-			break;
-		case ENET_EVENT_TYPE_RECEIVE:
-			Recivevents.push_back(event);
-			break;
-		case ENET_EVENT_TYPE_DISCONNECT:
-			for (int i = 0; i < sm->world->Players.size(); ++i)
+			case ENET_EVENT_TYPE_CONNECT:
 			{
-				if (event.peer->address.host == sm->world->Players.at(i).Peer->address.host)
+				sm->world->Players.push_back(new Player());
+				int id = sm->world->Players.size() - 1;
+				sm->world->Players[id]->Id = id;
+				sm->world->Players[id]->Peer = *event.peer;
+				sm->world->SpawnPlayer(id);
+				int * Args = new int[3];
+				Args[0] = Sword_PlayerIds;
+				for (int i = 0; i < 10; ++i)
 				{
-					sm->world->Players.erase(sm->world->Players.begin() + i);
-					std::cout << "player:" << i << " disconnected\n";
+					Args[1] = i; Args[2] = sm->world->Players[id]->BodyPartIds[i];
+					ENetPacket * packet = enet_packet_create(Args, 3, 0);
+					enet_peer_send(&sm->world->Players[id]->Peer, 0, packet);
+					enet_packet_destroy(packet);
 				}
+				//enet_host_flush(server);
+				delete [] Args;/**/
+				std::cout << "Player connected\n";
+				break;
 			}
-			event.peer->data = NULL;
+			case ENET_EVENT_TYPE_RECEIVE:
+			{
+				Recivevents.push_back(event);
+				break;
+			}
+			case ENET_EVENT_TYPE_DISCONNECT:
+			{
+				for (int i = 0; i < sm->world->Players.size(); ++i)
+				{
+					if (event.peer->address.host == (sm->world->Players.at(i))->Peer.address.host)
+					{
+						delete sm->world->Players[i];
+						sm->world->Players.erase(sm->world->Players.begin() + i);
+						std::cout << "player:" << i << " disconnected\n";
+						break;
+					}
+				}
+				event.peer->data = NULL;
+			}
 		}
 	}
 	for (int i = 0; i < Recivevents.size(); ++i)
@@ -53,20 +70,23 @@ void ServerHost::GetMessages(ServerManager * sm)
 		ParsePacket(sm,Recivevents.at(i));
 		enet_packet_destroy(Recivevents.at(i).packet);
 	}
+	Recivevents.clear();
 }
 void ServerHost::SendCommand(ENetPeer * peer, int Command, int * Args,int argscount)
 {
-	ENetPacket * packet;
+	++PacketCount;
 	int * buffer = new int[argscount + 1];
+	ENetPacket * packet;
 	buffer[0] = Command;
 	for (int i = 0; i < argscount; ++i)
 	{
 		buffer[i + 1] = Args[i];
-		std::cout << Command << "," << Args[i] << "\n";
 	}
 	packet = enet_packet_create(buffer, argscount + 1, 0);
 	enet_peer_send(peer, 0, packet);
-	//delete Args;
+	enet_host_flush(server);
+	delete buffer;
+	//delete []buffer;
 }
 void ServerHost::ParsePacket(ServerManager * sm,ENetEvent event)
 {
@@ -116,8 +136,9 @@ void ServerHost::UpdateAll(ServerManager * sm)
 				x = (int)pos[0] * 10; y = (int)pos[1] * 10; z = (int)pos[2] * 10;
 				int rx, ry, rz;
 				rx = (int)rot[0] * 10; ry = (int)rot[1] * 10; rz = (int)rot[2] * 10;
-				int args[] = { (int)o, x, y, z, rx, ry, rz, 0, sm->world->ObjectArray[o]->Mesh};
-				SendCommand(sm->world->Players[i].Peer, Sword_Object, (int *)args, 9);
+				//int * args = new int [] { o, x, y, z, rx, ry, rz, 0, sm->world->ObjectArray[o]->Mesh};
+				//SendCommand(&sm->world->Players[i]->Peer, Sword_Object, args, 9);
+				//delete [] args;
 			}
 		}
 	}

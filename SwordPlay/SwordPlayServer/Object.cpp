@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "World.h"
+#include <iostream>
 
 Object::Object(World * world, bool init, float x, float y, float z)
 {
@@ -30,7 +31,7 @@ void Object::Init(World * world,float x,float y,float z)
 	PhysicsBody->UpdateBoundingInfo();
 	float mass;
 	mass = 10.0f;
-	PhysicsBody->SetInertiaTensor(neSphereInertiaTensor(0.8f, mass));
+	PhysicsBody->SetInertiaTensor(neBoxInertiaTensor(size, mass));
 	PhysicsBody->SetMass(mass);
 	PhysicsBody->SetAngularDamping(0.01f);
 
@@ -41,7 +42,7 @@ void Object::Update(World * world)
 	PhysicsBody->ApplyTwist(QuedMoveRot);
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
-
+	//std::cout << PhysicsBody->GetPos()[0] << "," << PhysicsBody->GetPos()[1] << "," << PhysicsBody->GetPos()[2] << "," << "\n";
 }
 void Object::SetLocation(float x, float y, float z)
 {

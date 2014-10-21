@@ -32,10 +32,10 @@ World::World()
 	geom->SetBoxSize(boxSize1[0],boxSize1[1],boxSize1[2]);
 	gFloor->UpdateBoundingInfo(); // Set the position of the box within the simulator 
 	neV3 pos; pos.Set(0.0f, -3.0f, 0.0f); gFloor->SetPos(pos);
-	ObjectArray[AddObject(new Object(this))]->Init(this, 4, 0, 0);
+	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
 	ObjectArray[AddObject(new Object(this))]->Init(this, 9, 0, 3);
 	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 0, 3);
-	//ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
+	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
 }
 
 
@@ -49,6 +49,10 @@ World::~World()
 		}
 	}
 	delete ObjectArray;
+	for (int i = 0; i < Players.size(); ++i)
+	{
+		delete Players[i];
+	}
 	neSimulator::DestroySimulator(m_Sim);
 }
 
@@ -70,9 +74,10 @@ int World::AddObject(Object* object, bool candelete,bool caninit)
 	}
 	return -1;
 }
+const float DT = 1.0 / 60.0;
 void World::Update(ServerManager * sm)
 {
-	m_Sim->Advance(0.1);
+	m_Sim->Advance(DT);
 	for (int i = 0; i < this->ObjectCount; ++i)
 	{
 		if (ObjectArray[i] != NULL)
@@ -86,23 +91,23 @@ void World::SpawnPlayer(int playerid)
 	float OffsetX = 0, OffsetY = 0, OffsetZ = 0;
 	float LegHeight = 10;
 	float LegWidth = 5;
-	Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerL] = AddObject(new Object(this));
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerL]]->Init(this, OffsetX + LegWidth, OffsetY, OffsetZ);
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerL]]->Mesh = 1;
-	Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerR] = AddObject(new Object(this));
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerR]]->Init(this, OffsetX - LegWidth, OffsetY, OffsetZ);
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegLowerR]]->Mesh = 1;
+	Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL] = AddObject(new Object(this));
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Init(this, OffsetX + LegWidth, OffsetY, OffsetZ);
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Mesh = 1;
+	Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR] = AddObject(new Object(this));
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR]]->Init(this, OffsetX - LegWidth, OffsetY, OffsetZ);
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR]]->Mesh = 1;
 
-	Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperL] = AddObject(new Object(this));
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperL]]->Init(this, OffsetX + LegWidth, OffsetY + LegHeight, OffsetZ);
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperL]]->Mesh = 1;
-	Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperR] = AddObject(new Object(this));
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperR]]->Init(this, OffsetX - LegWidth, OffsetY + LegHeight, OffsetZ);
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_LegUpperR]]->Mesh = 1;
+	Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL] = AddObject(new Object(this));
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL]]->Init(this, OffsetX + LegWidth, OffsetY + LegHeight, OffsetZ);
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL]]->Mesh = 1;
+	Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR] = AddObject(new Object(this));
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR]]->Init(this, OffsetX - LegWidth, OffsetY + LegHeight, OffsetZ);
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR]]->Mesh = 1;
 	float BodyHeight = 10;
-	Players[playerid].BodyPartIds[Sword_PlayerId_Head] = AddObject(new Object(this));
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_Head]]->Init(this, OffsetX, OffsetY + LegHeight + BodyHeight, OffsetZ);
-	ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_Head]]->Mesh = 1;
+	Players[playerid]->BodyPartIds[Sword_PlayerId_Head] = AddObject(new Object(this));
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_Head]]->Init(this, OffsetX, OffsetY + LegHeight + BodyHeight, OffsetZ);
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_Head]]->Mesh = 1;
 	//Players[playerid].BodyPartIds[Sword_PlayerId_Head] = AddObject(new Object(this));
 	//ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_Head]]->Init(this, OffsetX, OffsetY + LegHeight, OffsetZ);
 	//ObjectArray[Players[playerid].BodyPartIds[Sword_PlayerId_Head]]->Mesh = 1;

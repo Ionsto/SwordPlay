@@ -12,6 +12,7 @@ public:
 	ENetHost *server;
 	ServerHost();
 	~ServerHost();
+	int PacketCount;
 	void Start(int port);
 	void GetMessages(ServerManager * sm);
 	void ParsePacket(ServerManager * sm, ENetEvent event);

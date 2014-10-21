@@ -113,14 +113,14 @@ void GameManager::UpdateServer()
 		{
 			Connector->SendCommands(Sword_MoveObject, new int[]{world->PlayerObjectIds[world->QuedMovment[i].Id], (int)(world->QuedMovment[i].dPos.X * 10), (int)(world->QuedMovment[i].dPos.Y * 10), (int)(world->QuedMovment[i].dPos.Z * 10), (int)(world->QuedMovment[i].dRot.X * 10), (int)(world->QuedMovment[i].dRot.Y * 10), (int)(world->QuedMovment[i].dRot.Z * 10)}, 6);
 		}
+		world->QuedMovment.clear();
 	}
-	world->QuedMovment.clear();
-	if (world->QuedBodyMovement.X != 0 || world->QuedBodyMovement.Y != 0 || world->QuedBodyMovement.Z != 0)
+	if (world->QuedBodyMovement.X != 0 || world->QuedBodyMovement.Y != 0 || world->QuedBodyMovement.Z != 0 || world->QuedBodyRotation.X != 0 || world->QuedBodyRotation.Y != 0 || world->QuedBodyRotation.Z != 0)
 	{
 		Connector->SendCommands(Sword_MovePlayer, new int [] { (int)world->QuedBodyMovement.X * 10, (int)world->QuedBodyMovement.Y * 10, (int)world->QuedBodyMovement.Z * 10, (int)world->QuedBodyRotation.X * 10, (int)world->QuedBodyRotation.Y * 10, (int)world->QuedBodyRotation.Z * 10}, 6);
+		world->QuedBodyMovement = vector3df();
+		world->QuedBodyRotation = vector3df();
 	}
-	world->QuedBodyMovement = vector3df();
-	world->QuedBodyRotation = vector3df();
 	Connector->GetInfomation(this);
 
 	if (world->PlayerObjectIds[Sword_PlayerId_Head] != -1)

@@ -5,6 +5,7 @@ ServerManager::ServerManager()
 {
 	Running = true;
 	ClientCount = 0;
+	PacketsPerUpdateCounter = 0;
 }
 
 
@@ -30,6 +31,8 @@ void ServerManager::Init()
 }
 void ServerManager::Destroy()
 {
+	delete world;
+	delete Serverhost;
 	enet_deinitialize();
 }
 void ServerManager::Run()
@@ -58,7 +61,10 @@ void ServerManager::MainLoop()
 	while (Running)
 	{
 		Update();
-		this->Serverhost->UpdateAll(this);
-		this->Serverhost->GetMessages(this);
+		if (PacketsPerUpdateCounter++ >= PacketsPerUpdate){
+			this->Serverhost->UpdateAll(this);
+			this->Serverhost->GetMessages(this);
+			PacketsPerUpdateCounter = 0;
+		}
 	}
 }
