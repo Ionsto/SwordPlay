@@ -20,7 +20,7 @@ World::World(GameManager * gm)
 	Meshes[1] = gm->smgr->getMesh("./Res/Head.x"); Meshes[1]->setMaterialFlag(EMF_LIGHTING, false);
 	Meshes[2] = gm->smgr->getMesh("./Res/Arm.x"); Meshes[2]->setMaterialFlag(EMF_LIGHTING, false);
 
-	Camera = gm->smgr->addCameraSceneNode(0, vector3df(30, 30, 30),vector3df(0,0,0));
+	Camera = gm->smgr->addCameraSceneNode(0, vector3df(20, 20, 20),vector3df(0,0,0));
 	Camera->bindTargetAndRotation(true);
 	Camera->updateAbsolutePosition();
 }

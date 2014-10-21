@@ -12,7 +12,7 @@ public:
 	ClientConnection();
 	~ClientConnection();
 	void Connect(char * ip, int port);
-	void SendCommands(int Command,int * Args,int argscount);
+	void SendCommands(int Command, enet_uint8 * Args, int argscount);
 	void GetInfomation(GameManager * gm);
 	void Disconnect();
 	void Update(GameManager * gm);

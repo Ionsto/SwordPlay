@@ -18,13 +18,6 @@ void ServerManager::Init()
 	enet_initialize();
 	std::cout << "Genn'ing world\n";
 	world = new World();
-	/*world->GenerateWorld();
-	world->AddObject(new Object());
-	world->ObjectArray[0]->Position = Vector2(4, 4);
-	world->AddObject(new Object());
-	world->ObjectArray[1]->Position = Vector2(6, 4);
-	world->AddObject(new Object());
-	world->ObjectArray[2]->Position = Vector2(8, 4);*/
 	std::cout << "Starting Server\n";
 	Serverhost = new ServerHost();
 	Serverhost->Start(25565);

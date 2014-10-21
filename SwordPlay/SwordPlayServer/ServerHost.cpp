@@ -17,7 +17,6 @@ ServerHost::~ServerHost()
 void ServerHost::GetMessages(ServerManager * sm)
 {
 	ENetEvent event;
-	std::vector<ENetEvent> Recivevents;
 	while (enet_host_service(server, &event, 0) > 0)
 	{
 		int ClientID = 0;
@@ -25,28 +24,30 @@ void ServerHost::GetMessages(ServerManager * sm)
 		{
 			case ENET_EVENT_TYPE_CONNECT:
 			{
-				sm->world->Players.push_back(new Player());
-				int id = sm->world->Players.size() - 1;
-				sm->world->Players[id]->Id = id;
-				sm->world->Players[id]->Peer = *event.peer;
-				sm->world->SpawnPlayer(id);
+				Player * player = new Player();
+				int id = sm->world->Players.size();
+				player->Id = id;
+				player->Peer = *event.peer;
+				//sm->world->SpawnPlayer(id);
+				sm->world->Players.push_back(player);
 				int * Args = new int[3];
 				Args[0] = Sword_PlayerIds;
 				for (int i = 0; i < 10; ++i)
 				{
 					Args[1] = i; Args[2] = sm->world->Players[id]->BodyPartIds[i];
 					ENetPacket * packet = enet_packet_create(Args, 3, 0);
-					enet_peer_send(&sm->world->Players[id]->Peer, 0, packet);
-					enet_packet_destroy(packet);
+					enet_peer_send(event.peer, 0, packet);
+					//enet_packet_destroy(packet);
 				}
-				//enet_host_flush(server);
-				delete [] Args;/**/
+				enet_host_flush(server);
+				delete [] Args;
 				std::cout << "Player connected\n";
 				break;
 			}
 			case ENET_EVENT_TYPE_RECEIVE:
 			{
-				Recivevents.push_back(event);
+				ParsePacket(sm, event);
+				enet_packet_destroy(event.packet);
 				break;
 			}
 			case ENET_EVENT_TYPE_DISCONNECT:
@@ -65,12 +66,6 @@ void ServerHost::GetMessages(ServerManager * sm)
 			}
 		}
 	}
-	for (int i = 0; i < Recivevents.size(); ++i)
-	{
-		ParsePacket(sm,Recivevents.at(i));
-		enet_packet_destroy(Recivevents.at(i).packet);
-	}
-	Recivevents.clear();
 }
 void ServerHost::SendCommand(ENetPeer * peer, int Command, int * Args,int argscount)
 {
@@ -136,7 +131,21 @@ void ServerHost::UpdateAll(ServerManager * sm)
 				x = (int)pos[0] * 10; y = (int)pos[1] * 10; z = (int)pos[2] * 10;
 				int rx, ry, rz;
 				rx = (int)rot[0] * 10; ry = (int)rot[1] * 10; rz = (int)rot[2] * 10;
-				//int * args = new int [] { o, x, y, z, rx, ry, rz, 0, sm->world->ObjectArray[o]->Mesh};
+				enet_uint8 * args = new enet_uint8[10];
+				args[0] = Sword_Object;
+				args[1] = o;
+				args[2] = x;
+				args[3] = y;
+				args[4] = z;
+				args[5] = rx;
+				args[6] = ry;
+				args[7] = rz;
+				args[8] = 0;
+				args[9] = sm->world->ObjectArray[o]->Mesh;
+				ENetPacket * packet = enet_packet_create("", 10,0);
+				packet->data = (enet_uint8 *)args;
+				enet_host_broadcast(server, 0, packet);
+				enet_host_flush(server);
 				//SendCommand(&sm->world->Players[i]->Peer, Sword_Object, args, 9);
 				//delete [] args;
 			}

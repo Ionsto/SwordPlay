@@ -77,7 +77,7 @@ void ClientConnection::Disconnect()
 	enet_peer_reset(Server);
 }
 
-void ClientConnection::SendCommands(int Command, int * Args,int argscount)
+void ClientConnection::SendCommands(int Command, enet_uint8 * Args,int argscount)
 {
 	ENetPacket *packet;
 	int * buffer = new int[argscount + 1];
@@ -119,12 +119,12 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	if (((int)event.packet->data[0]) == Sword_Object)
 	{
 		int id = ((int)event.packet->data[1]);
-		int X = ((int)event.packet->data[2]) / 10;
-		int Y = ((int)event.packet->data[3]) / 10;
-		int Z = ((int)event.packet->data[4]) / 10;
-		int RX = ((int)event.packet->data[5]) / 10;
-		int RY = ((int)event.packet->data[6]) / 10;
-		int RZ = ((int)event.packet->data[7]) / 10;
+		int X = ((int)event.packet->data[2]) / 10.0;
+		int Y = ((int)event.packet->data[3]) / 10.0;
+		int Z = ((int)event.packet->data[4]) / 10.0;
+		int RX = ((int)event.packet->data[5]) / 10.0;
+		int RY = ((int)event.packet->data[6]) / 10.0;
+		int RZ = ((int)event.packet->data[7]) / 10.0;
 		if (gm->world->ObjectArray[id] == NULL)
 		{
 			int Mesh = (int)event.packet->data[8];
@@ -134,15 +134,24 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
 			{
 				//The head of the mesh family
-				//Mesh = 0;
+				Mesh = 1;
 			}
 			gm->world->ObjectArray[id] = new Object(gm, Mesh);
+			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
+			{
+				//gm->world->Camera->setParent(gm->world->ObjectArray[id]->Node);
+				//gm->world->MoveCamera(vector3df(0, 0 + 10, 0), vector3df(0, 0, 0));
+				//gm->world->Camera->getAbsolutePosition();
+				//gm->world->MoveCamera(vector3df(0, 0 + 10, 0), vector3df(0, 0, 0));
+				//gm->world->Camera->setTarget(vector3df(0, 0, 0));
+			}
 		}
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
 		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
-			//gm->world->MoveCamera(vector3df(X, Y, Z), vector3df(RX, RY, RZ));
+			//gm->world->MoveCamera(vector3df(X, Y + 5, Z), vector3df(RX, RY, RZ));
+			//Camera->updateAbsolutePosition();
 		}
 	}
 	if (((int)event.packet->data[0]) == Sword_PlayerIds)
