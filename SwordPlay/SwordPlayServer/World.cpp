@@ -8,7 +8,7 @@ World::World()
 	RigidBodyCount = 40;
 	ObjectCount = 20;
 	sizeInfo.rigidBodiesCount = this->RigidBodyCount;
-	sizeInfo.animatedBodiesCount = 1;
+	sizeInfo.animatedBodiesCount = 5;
 	neV3 gravity = neV3();
 	gravity.Set(0.0f, -10.0f, 0.0f);
 	s32 totalBody = sizeInfo.rigidBodiesCount + sizeInfo.animatedBodiesCount;
@@ -32,6 +32,35 @@ World::World()
 	geom->SetBoxSize(boxSize1[0],boxSize1[1],boxSize1[2]);
 	gFloor->UpdateBoundingInfo(); // Set the position of the box within the simulator 
 	neV3 pos; pos.Set(0.0f, -3.0f, 0.0f); gFloor->SetPos(pos);
+
+	neAnimatedBody * Left = m_Sim->CreateAnimatedBody();
+	neGeometry * geomL = Left->AddGeometry();
+	boxSize1; boxSize1.Set(10, 100, 100);
+	geomL->SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);
+	Left->UpdateBoundingInfo(); // Set the position of the box within the simulator 
+	pos; pos.Set(FLOORSIZE, 50, 0.0f); Left->SetPos(pos);
+
+	neAnimatedBody * Right = m_Sim->CreateAnimatedBody();
+	neGeometry * geomR = Right->AddGeometry();
+	boxSize1; boxSize1.Set(10, 100, 100);
+	geomR->SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);
+	Right->UpdateBoundingInfo(); // Set the position of the box within the simulator 
+	pos; pos.Set(-FLOORSIZE, 50, 0.0f); Right->SetPos(pos);
+
+	neAnimatedBody * Top = m_Sim->CreateAnimatedBody();
+	neGeometry * geomT = Top->AddGeometry();
+	boxSize1; boxSize1.Set(100, 100, 10);
+	geomT->SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);
+	Top->UpdateBoundingInfo(); // Set the position of the box within the simulator 
+	pos; pos.Set(0, 50, FLOORSIZE); Top->SetPos(pos);
+
+	neAnimatedBody * Bottem = m_Sim->CreateAnimatedBody();
+	neGeometry * geomB = Bottem->AddGeometry();
+	boxSize1; boxSize1.Set(100, 100, 10);
+	geomB->SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);
+	Bottem->UpdateBoundingInfo(); // Set the position of the box within the simulator 
+	pos; pos.Set(0, 50, -FLOORSIZE); Bottem->SetPos(pos);
+
 	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
 	ObjectArray[AddObject(new Object(this))]->Init(this, 9, 0, 3);
 	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 0, 3);

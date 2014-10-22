@@ -30,7 +30,7 @@ void Object::Init(World * world,float x,float y,float z)
 	geom->SetMaterialIndex(1);
 	PhysicsBody->UpdateBoundingInfo();
 	float mass;
-	mass = 1.0f;
+	mass = 10.0f;
 	PhysicsBody->SetInertiaTensor(neBoxInertiaTensor(size, mass));
 	PhysicsBody->SetMass(mass);
 	PhysicsBody->SetAngularDamping(0.01f);
