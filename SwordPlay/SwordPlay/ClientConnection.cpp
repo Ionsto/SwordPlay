@@ -77,29 +77,31 @@ void ClientConnection::Disconnect()
 	enet_peer_reset(Server);
 }
 
-void ClientConnection::SendCommands(int Command, enet_uint8 * Args,int argscount)
+void ClientConnection::SendCommands(int Command, enet_uint8 * Args, int argscount)
 {
 	ENetPacket *packet;
-	int * buffer = new int[argscount + 1];
+	enet_uint8 * buffer = new enet_uint8[argscount + 1];
 	buffer[0] = Command;
 	for (int i = 0; i < argscount; ++i)
 	{
 		buffer[i + 1] = Args[i];
 	}
-	packet = enet_packet_create(buffer, argscount + 1, 0);
+	packet = enet_packet_create(NULL, argscount + 1, 0);
+	packet->data = buffer;
 	enet_peer_send(Server, 0, packet);
+	enet_host_flush(client);
 }
 
 void ClientConnection::GetInfomation(GameManager * gm)
 {
 	ENetEvent event;
-	std::vector<ENetEvent> Recivevents;
 	int Count = 0;
-	while (enet_host_service(client, &event, 0) > 0 && Count++ < 60)
+	while (enet_host_service(client, &event, 0) > 0 && Count++ < 30)
 	{
 	switch (event.type) {
-		case ENET_EVENT_TYPE_RECEIVE:
-			Recivevents.push_back(event);
+	case ENET_EVENT_TYPE_RECEIVE:
+			ParsePacket(gm, event);
+			enet_packet_destroy(event.packet);
 			//puts((char*)event.packet->data);
 			break;
 		case ENET_EVENT_TYPE_DISCONNECT:
@@ -108,11 +110,6 @@ void ClientConnection::GetInfomation(GameManager * gm)
 			break;
 		}
 	}
-	for (int i = 0; i < Recivevents.size();++i)
-	{
-		ParsePacket(gm,Recivevents[i]);
-		enet_packet_destroy(Recivevents[i].packet);
-	}
 }
 void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 {
@@ -120,8 +117,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	{
 		int id = ((int)event.packet->data[1]);
 		int X = ((int)event.packet->data[2]) / 10.0;
-		int Y = ((int)event.packet->data[3]) / 10.0;
-		int Z = ((int)event.packet->data[4]) / 10.0;
+		int X0 = ((int)event.packet->data[2]) / 10.0;
+		int X1 = ((int)event.packet->data[2]) / 10.0;
 		int RX = ((int)event.packet->data[5]) / 10.0;
 		int RY = ((int)event.packet->data[6]) / 10.0;
 		int RZ = ((int)event.packet->data[7]) / 10.0;

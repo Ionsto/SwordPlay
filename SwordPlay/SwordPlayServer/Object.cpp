@@ -30,7 +30,7 @@ void Object::Init(World * world,float x,float y,float z)
 	geom->SetMaterialIndex(1);
 	PhysicsBody->UpdateBoundingInfo();
 	float mass;
-	mass = 10.0f;
+	mass = 1.0f;
 	PhysicsBody->SetInertiaTensor(neBoxInertiaTensor(size, mass));
 	PhysicsBody->SetMass(mass);
 	PhysicsBody->SetAngularDamping(0.01f);
@@ -38,7 +38,10 @@ void Object::Init(World * world,float x,float y,float z)
 }
 void Object::Update(World * world)
 {
-	PhysicsBody->ApplyImpulse(QuedMovePos);
+	if (QuedMovePos.X() != 0 || QuedMovePos.W() != 0 || QuedMovePos.Z() != 0)
+	{
+		PhysicsBody->ApplyImpulse(QuedMovePos);
+	}
 	PhysicsBody->ApplyTwist(QuedMoveRot);
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);

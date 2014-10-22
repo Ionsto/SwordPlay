@@ -54,7 +54,7 @@ void GameManager::MainLoop()
 void GameManager::Update()
 {
 	MainMenu.Update(this);
-	const float poooowwwwwerrrr = 32532;// !
+	const float poooowwwwwerrrr = 10;// !
 	if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
 	{
 		Running = false;
@@ -96,7 +96,7 @@ void GameManager::Update()
 			x = speed;
 		if (y > speed)
 			y = speed;
-		//world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
+		world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
 		KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
 		KeyListener.MouseState.PosChanged = false;
 	}
@@ -110,43 +110,53 @@ void GameManager::UpdateServer()
 	{
 		for (int i = 0; i < world->QuedMovment.size(); ++i)
 		{
-			enet_uint8 * Args = new enet_uint8[7];
+			enet_uint8 * Args = new enet_uint8[13];
 			Args[0] = world->PlayerObjectIds[world->QuedMovment[i].Id];
-			Args[1] = (int)(world->QuedMovment[i].dPos.X * 10);
-			Args[2] = (int)(world->QuedMovment[i].dPos.Y * 10);
-			Args[3] = (int)(world->QuedMovment[i].dPos.Z * 10);
-			Args[4] = (int)(world->QuedMovment[i].dRot.X * 10);
-			Args[5] = (int)(world->QuedMovment[i].dRot.Y * 10);
-			Args[6] = (int)(world->QuedMovment[i].dRot.Z * 10);
-			Connector->SendCommands(Sword_MoveObject, Args, 7);
+			Args[1] = (int)(world->QuedMovment[i].dPos.X) / (10 * Connector->GetExp((int)world->QuedMovment[i].dPos.X));
+			Args[2] = (int)(world->QuedMovment[i].dPos.Y) / (10 * Connector->GetExp((int)world->QuedMovment[i].dPos.Y));
+			Args[3] = (int)(world->QuedMovment[i].dPos.Z) / (10 * Connector->GetExp((int)world->QuedMovment[i].dPos.Z));
+			Args[4] = (int)(world->QuedMovment[i].dRot.X) / (10 * Connector->GetExp((int)world->QuedMovment[i].dRot.X));
+			Args[5] = (int)(world->QuedMovment[i].dRot.Y) / (10 * Connector->GetExp((int)world->QuedMovment[i].dRot.Y));
+			Args[6] = (int)(world->QuedMovment[i].dRot.Z) / (10 * Connector->GetExp((int)world->QuedMovment[i].dPos.Z));
+			
+			Args[7] = Connector->GetExp((int)world->QuedMovment[i].dPos.X);
+			Args[8] = Connector->GetExp((int)world->QuedMovment[i].dPos.Y);
+			Args[9] = Connector->GetExp((int)world->QuedMovment[i].dPos.Z);
+			Args[10] = Connector->GetExp((int)world->QuedMovment[i].dRot.X);
+			Args[11] = Connector->GetExp((int)world->QuedMovment[i].dRot.Y);
+			Args[12] = Connector->GetExp((int)world->QuedMovment[i].dPos.Z);
+			Connector->SendCommands(Sword_MoveObject, Args, 13);
 			delete Args;
 		}
 		world->QuedMovment.clear();
 	}
 	if (world->QuedBodyMovement.X != 0 || world->QuedBodyMovement.Y != 0 || world->QuedBodyMovement.Z != 0 || world->QuedBodyRotation.X != 0 || world->QuedBodyRotation.Y != 0 || world->QuedBodyRotation.Z != 0)
 	{
-		for (int i = 0; i < 13; ++i)
+		for (int i = 0; i < 10; ++i)
 		{
-			enet_uint8 * Args = new enet_uint8[7];
-			Args[0] = world->PlayerObjectIds[world->PlayerObjectIds[i]];
-			Args[1] = ((int)world->QuedBodyMovement.X) / Connector->GetExp((int)world->QuedBodyMovement.X);
-			Args[2] = ((int)world->QuedBodyMovement.Y) / Connector->GetExp((int)world->QuedBodyMovement.Y);
-			Args[3] = ((int)world->QuedBodyMovement.Z) / Connector->GetExp((int)world->QuedBodyMovement.Z);
-			Args[4] = ((int)world->QuedBodyRotation.X) / Connector->GetExp((int)world->QuedBodyRotation.X);
-			Args[5] = ((int)world->QuedBodyRotation.Y) / Connector->GetExp((int)world->QuedBodyRotation.Y);
-			Args[6] = ((int)world->QuedBodyRotation.Z) / Connector->GetExp((int)world->QuedBodyRotation.Z);
+			if (world->PlayerObjectIds[i] != -1)
+			{
+				enet_uint8 * Args = new enet_uint8[13];
+ 				Args[0] = world->PlayerObjectIds[world->PlayerObjectIds[i]];
+				Args[1] = ((int)world->QuedBodyMovement.X) / (10 * Connector->GetExp((int)world->QuedBodyMovement.X));
+				Args[2] = ((int)world->QuedBodyMovement.Y) / (10 * Connector->GetExp((int)world->QuedBodyMovement.Y));
+				Args[3] = ((int)world->QuedBodyMovement.Z) / (10 * Connector->GetExp((int)world->QuedBodyMovement.Z));
+				Args[4] = ((int)world->QuedBodyRotation.X) / (10 * Connector->GetExp((int)world->QuedBodyRotation.X));
+				Args[5] = ((int)world->QuedBodyRotation.Y) / (10 * Connector->GetExp((int)world->QuedBodyRotation.Y));
+				Args[6] = ((int)world->QuedBodyRotation.Z) / (10 * Connector->GetExp((int)world->QuedBodyRotation.Z));
 
-			Args[7] = Connector->GetExp(world->QuedBodyMovement.X);
-			Args[8] = Connector->GetExp(world->QuedBodyMovement.Y);
-			Args[9] = Connector->GetExp(world->QuedBodyMovement.Z);
-			Args[10] = Connector->GetExp(world->QuedBodyRotation.X);
-			Args[11] = Connector->GetExp(world->QuedBodyRotation.X);
-			Args[12] = Connector->GetExp(world->QuedBodyRotation.X);
-			Connector->SendCommands(Sword_MoveObject, Args, 7);
-			delete[] Args;
+				Args[7] = Connector->GetExp(world->QuedBodyMovement.X);
+				Args[8] = Connector->GetExp(world->QuedBodyMovement.Y);
+				Args[9] = Connector->GetExp(world->QuedBodyMovement.Z);
+				Args[10] = Connector->GetExp(world->QuedBodyRotation.X);
+				Args[11] = Connector->GetExp(world->QuedBodyRotation.X);
+				Args[12] = Connector->GetExp(world->QuedBodyRotation.X);
+				Connector->SendCommands(Sword_MoveObject, Args, 13);
+				delete[] Args;
+			}
 		}
-		world->QuedBodyMovement = vector3df();
-		world->QuedBodyRotation = vector3df();
+		world->QuedBodyMovement = vector3df(0,0,0);
+		world->QuedBodyRotation = vector3df(0,0,0);
 	}
 	Connector->GetInfomation(this);
 

@@ -28,8 +28,8 @@ void ServerHost::GetMessages(ServerManager * sm)
 				int id = sm->world->Players.size();
 				player->Id = id;
 				player->Peer = *event.peer;
-				//sm->world->SpawnPlayer(id);
 				sm->world->Players.push_back(player);
+				sm->world->SpawnPlayer(id);
 				int * Args = new int[3];
 				Args[0] = Sword_PlayerIds;
 				for (int i = 0; i < 10; ++i)
@@ -87,18 +87,22 @@ void ServerHost::ParsePacket(ServerManager * sm,ENetEvent event)
 {
 	if (event.packet->data[0] == Sword_MoveObject)
 	{
-		int Id = event.packet->data[1];
-		if (Id > 0 && Id < sm->world->ObjectCount)
+		int Id = (int)event.packet->data[1];
+		if (Id >= 0 && Id < sm->world->ObjectCount)
 		{
 			if (sm->world->ObjectArray[Id] != NULL)
 			{
 				//If the incoming dx actualy changes somthing, override movement
 				for (int i = 0; i < 3; ++i){
-					if (event.packet->data[i + 2] != 0){
-						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] / event.packet->data[i + 8];
+					enet_uint8 pos = event.packet->data[i + 2];
+					enet_uint8 rot = event.packet->data[i + 5];
+					enet_uint8 Expos = event.packet->data[i + 8];
+					enet_uint8 Exrot = event.packet->data[i + 10];
+					if (((int)pos) != 0){
+						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] * powf(10, (int)Expos);
 					}
-					if (event.packet->data[i + 5] != 0){
-						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] / event.packet->data[i + 8];
+					if (((int)pos) != 0){
+						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] * powf(10, (int)Exrot);
 					}
 				}
 			}

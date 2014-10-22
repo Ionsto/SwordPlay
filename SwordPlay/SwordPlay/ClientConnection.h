@@ -20,22 +20,22 @@ public:
 	void ParsePacket(GameManager * gm,ENetEvent event);
 	float GetExp(float in)
 	{
-		float ex = 1;
-		if (in > 10)
-		{
-			for (int i = -1; in * powf(10,i) > 10;--i)
+		const int Lim = 998001;//999 * 999
+		if (abs(in) < Lim){
+			float ex = 1;
+			if (abs(in) > 10)
 			{
-				ex = i;
+				for (int i = -1; abs(in * powf(10, i)) > 10; --i)
+				{
+					ex = -i;
+				}
 			}
+			return min(abs(ex), 999) * (abs(ex) / ex);
 		}
-		if (in < -10)
+		else
 		{
-			for (int i = 1; in * powf(10, i) < -10;++i)
-			{
-				ex = i;
-			}
+			return 999 * (abs(in) / -in);
 		}
-		return min(abs(ex), 100) * (abs(ex) / ex);
 	}
 };
 
