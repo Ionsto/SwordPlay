@@ -95,10 +95,10 @@ void ServerHost::ParsePacket(ServerManager * sm,ENetEvent event)
 				//If the incoming dx actualy changes somthing, override movement
 				for (int i = 0; i < 3; ++i){
 					if (event.packet->data[i + 2] != 0){
-						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] / 10;
+						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] / event.packet->data[i + 8];
 					}
 					if (event.packet->data[i + 5] != 0){
-						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] / 10;
+						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] / event.packet->data[i + 8];
 					}
 				}
 			}

@@ -1,4 +1,4 @@
-//All position values are * 10 to get better acuraccy
+//All position values are sent * 10 , then /10 to get to get better acuraccy
 
 //Position of any object [ID,X,Y,Z,RX,RY,RZ,animation,mesh]
 const int Sword_Object = 0;
@@ -6,9 +6,9 @@ const int Sword_Object = 0;
 const int Sword_Animation = 1;
 //A sound to be played [X,Y,Z,Type,volume]
 const int Sword_Sound = 2;
-//A player movement ie walk [dX,dY,dZ,dRX,dRY,dRZ]
-const int Sword_MovePlayer = 3;
-//An object movement ie Sword swing [dX,dY,dZ,dRX,dRY,dRZ]
+/*An object movement ie Sword swing, dx is the change in x, EX is the Exponet for X
+These values are not * 10
+[dX,dY,dZ,dRX,dRY,dRZ,EX,EY,EZ,ERX,ERY,ERZ] */
 const int Sword_MoveObject = 4;
 //Id of the player Objects [TypeId,Id]
 const int Sword_PlayerIds = 5;
