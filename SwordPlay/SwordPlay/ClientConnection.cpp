@@ -118,22 +118,22 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 		int id = ((int)event.packet->data[1]);
 		int X0 = ((int)event.packet->data[2]);
 		int X1 = ((int)event.packet->data[3]);
-		float X = ((X0 << 8) | X1) / 1;
+		int X = ((X0 << 8) | X1);
 		int Y0 = ((int)event.packet->data[4]);
 		int Y1 = ((int)event.packet->data[5]);
-		float Y = ((Y0 << 8) | Y1) / 1;
+		int Y = ((Y0 << 8) | Y1) / 100;
 		int Z0 = ((int)event.packet->data[6]);
 		int Z1 = ((int)event.packet->data[7]);
-		float Z = ((Z0 << 8) | Z1) / 1;
+		int Z = ((Z0 << 8) | Z1) / 100;
 		int RX0 = ((int)event.packet->data[8]);
 		int RX1 = ((int)event.packet->data[9]);
-		float RX = ((RX0 << 8) | RX1) / 1;
+		int RX = ((RX0 << 8) | RX1) / 100;
 		int RY0 = ((int)event.packet->data[10]);
 		int RY1 = ((int)event.packet->data[11]);
-		float RY = ((RY0 << 8) | RY1) / 1;
+		int RY = ((RY0 << 8) | RY1) / 100;
 		int RZ0 = ((int)event.packet->data[12]);
 		int RZ1 = ((int)event.packet->data[13]);
-		float RZ = ((RZ0 << 8) | RZ1) / 1;
+		int RZ = ((RZ0 << 8) | RZ1) / 100;
 		if (gm->world->ObjectArray[id] == NULL)
 		{
 			int Mesh = (int)event.packet->data[15];
@@ -155,7 +155,7 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 				//gm->world->Camera->setTarget(vector3df(0, 0, 0));
 			}
 		}
-		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
+		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X / 100.0, Y / 100.0, Z / 100.0));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
 		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{

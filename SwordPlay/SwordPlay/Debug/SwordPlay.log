@@ -1,11 +1,13 @@
-﻿Build started 22/10/2014 19:51:33.
+﻿Build started 22/10/2014 20:42:58.
      1>Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp
-         World.cpp
-     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ClientConnection.cpp
+         ClientConnection.cpp
      1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.h(28): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.h(30): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.cpp(158): warning C4244: 'argument' : conversion from 'double' to 'irr::f32', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.cpp(159): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe" /INCREMENTAL /NOLOGO enet.lib Irrlicht.lib ws2_32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.lib" /MACHINE:X86 Debug\ClientConnection.obj
          Debug\GameManager.obj
@@ -19,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.37
+Time Elapsed 00:00:02.27

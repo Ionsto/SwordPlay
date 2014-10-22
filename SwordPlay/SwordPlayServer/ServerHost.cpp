@@ -138,9 +138,9 @@ void ServerHost::UpdateAll(ServerManager * sm)
 				y0 = (y & 65280) >> 8; y1 = (y & 255);
 				z0 = (z & 65280) >> 8; z1 = (z & 255);
 				int rx0, rx1, ry0, ry1, rz0, rz1;
-				rx0 = ((enet_uint16)pos[0] | 65280) >> 8; rx1 = ((enet_uint16)pos[0] | 255);
-				ry0 = ((enet_uint16)pos[1] | 65280) >> 8; ry1 = ((enet_uint16)pos[1] | 255);
-				rz0 = ((enet_uint16)pos[2] | 65280) >> 8; rz1 = ((enet_uint16)pos[2] | 255);
+				rx0 = (((enet_uint16)pos[0]) & 65280) >> 8; rx1 = (((enet_uint16)pos[0]) & 255);
+				ry0 = (((enet_uint16)pos[1]) & 65280) >> 8; ry1 = (((enet_uint16)pos[1]) & 255);
+				rz0 = (((enet_uint16)pos[2]) & 65280) >> 8; rz1 = (((enet_uint16)pos[2]) & 255);
 				enet_uint8 * args = new enet_uint8[16];
 				args[0] = Sword_Object;
 				args[1] = o;
