@@ -116,15 +116,27 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	if (((int)event.packet->data[0]) == Sword_Object)
 	{
 		int id = ((int)event.packet->data[1]);
-		int X = ((int)event.packet->data[2]) / 10.0;
-		int X0 = ((int)event.packet->data[2]) / 10.0;
-		int X1 = ((int)event.packet->data[2]) / 10.0;
-		int RX = ((int)event.packet->data[5]) / 10.0;
-		int RY = ((int)event.packet->data[6]) / 10.0;
-		int RZ = ((int)event.packet->data[7]) / 10.0;
+		int X0 = ((int)event.packet->data[2]);
+		int X1 = ((int)event.packet->data[3]);
+		float X = ((X0 << 8) | X1) / 1;
+		int Y0 = ((int)event.packet->data[4]);
+		int Y1 = ((int)event.packet->data[5]);
+		float Y = ((Y0 << 8) | Y1) / 1;
+		int Z0 = ((int)event.packet->data[6]);
+		int Z1 = ((int)event.packet->data[7]);
+		float Z = ((Z0 << 8) | Z1) / 1;
+		int RX0 = ((int)event.packet->data[8]);
+		int RX1 = ((int)event.packet->data[9]);
+		float RX = ((RX0 << 8) | RX1) / 1;
+		int RY0 = ((int)event.packet->data[10]);
+		int RY1 = ((int)event.packet->data[11]);
+		float RY = ((RY0 << 8) | RY1) / 1;
+		int RZ0 = ((int)event.packet->data[12]);
+		int RZ1 = ((int)event.packet->data[13]);
+		float RZ = ((RZ0 << 8) | RZ1) / 1;
 		if (gm->world->ObjectArray[id] == NULL)
 		{
-			int Mesh = (int)event.packet->data[8];
+			int Mesh = (int)event.packet->data[15];
 			Mesh = 1;
 			if (Mesh < 0){ Mesh = 0; }
 			if (Mesh > gm->world->MeshCount){ Mesh = gm->world->MeshCount - 1; }
