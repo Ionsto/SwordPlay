@@ -24,7 +24,7 @@ void Object::Init(World * world,float x,float y,float z)
 	PhysicsBody->SetPos(pos);
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
-	neV3 size; size.Set(5, 5, 5);
+	neV3 size; size.Set(.5, .5, .5);
 	geom = PhysicsBody->AddGeometry();
 	geom->SetBoxSize(size);
 	geom->SetMaterialIndex(1);
@@ -38,7 +38,7 @@ void Object::Init(World * world,float x,float y,float z)
 }
 void Object::Update(World * world)
 {
-	if (QuedMovePos.X() != 0 || QuedMovePos.W() != 0 || QuedMovePos.Z() != 0)
+	if (QuedMovePos.X() != 0 || QuedMovePos.Y() != 0 || QuedMovePos.Z() != 0)
 	{
 		PhysicsBody->ApplyImpulse(QuedMovePos);
 	}

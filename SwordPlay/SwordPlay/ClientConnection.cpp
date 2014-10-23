@@ -115,25 +115,25 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 {
 	if (((int)event.packet->data[0]) == Sword_Object)
 	{
-		int id = ((int)event.packet->data[1]);
-		int X0 = ((int)event.packet->data[2]);
-		int X1 = ((int)event.packet->data[3]);
-		int X = ((X0 << 8) | X1);
-		int Y0 = ((int)event.packet->data[4]);
-		int Y1 = ((int)event.packet->data[5]);
-		int Y = ((Y0 << 8) | Y1) / 100;
-		int Z0 = ((int)event.packet->data[6]);
-		int Z1 = ((int)event.packet->data[7]);
-		int Z = ((Z0 << 8) | Z1) / 100;
-		int RX0 = ((int)event.packet->data[8]);
-		int RX1 = ((int)event.packet->data[9]);
-		int RX = ((RX0 << 8) | RX1) / 100;
-		int RY0 = ((int)event.packet->data[10]);
-		int RY1 = ((int)event.packet->data[11]);
-		int RY = ((RY0 << 8) | RY1) / 100;
-		int RZ0 = ((int)event.packet->data[12]);
-		int RZ1 = ((int)event.packet->data[13]);
-		int RZ = ((RZ0 << 8) | RZ1) / 100;
+		int id = ((INT16)event.packet->data[1]);
+		int X0 = (event.packet->data[2]);
+		int X1 = (event.packet->data[3]);
+		INT16 X = ((X0 << 8) | X1);
+		int Y0 = (event.packet->data[4]);
+		int Y1 = (event.packet->data[5]);
+		INT16 Y = ((Y0 << 8) | Y1);
+		int Z0 = (event.packet->data[6]);
+		int Z1 = (event.packet->data[7]);
+		INT16 Z = ((Z0 << 8) | Z1);
+		int RX0 = (event.packet->data[8]);
+		int RX1 = (event.packet->data[9]);
+		INT16 RX = ((RX0 << 8) | RX1);
+		int RY0 = (event.packet->data[10]);
+		int RY1 = (event.packet->data[11]);
+		INT16 RY = ((RY0 << 8) | RY1);
+		int RZ0 = (event.packet->data[12]);
+		int RZ1 = (event.packet->data[13]);
+		INT16 RZ = ((RZ0 << 8) | RZ1);
 		if (gm->world->ObjectArray[id] == NULL)
 		{
 			int Mesh = (int)event.packet->data[15];
@@ -155,9 +155,9 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 				//gm->world->Camera->setTarget(vector3df(0, 0, 0));
 			}
 		}
-		std::cout << ",X:" << X << ",Y:" << Y << ",Z:" << Z << "\n";
+		//std::cout << ",X:" << X << ",Y:" << Y << ",Z:" << Z << "\n";
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X / 100.0, Y / 100.0, Z / 100.0));
-		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY, RZ));
+		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX / 100.0, RY / 100.0, RZ / 100.0));
 		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
 			//gm->world->MoveCamera(vector3df(X, Y + 5, Z), vector3df(RX, RY, RZ));

@@ -54,7 +54,7 @@ void GameManager::MainLoop()
 void GameManager::Update()
 {
 	MainMenu.Update(this);
-	const float poooowwwwwerrrr = 1;// !
+	const float poooowwwwwerrrr = 7;// !
 	if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
 	{
 		Running = false;
@@ -74,6 +74,10 @@ void GameManager::Update()
 	if (this->KeyListener.IsKeyDown(KEY_KEY_S))
 	{
 		world->QuedBodyMovement.Z = -poooowwwwwerrrr;
+	}
+	if (this->KeyListener.IsKeyDown(KEY_SPACE))
+	{
+		world->QuedBodyMovement.Y = 100;
 	}
 	if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
 	{

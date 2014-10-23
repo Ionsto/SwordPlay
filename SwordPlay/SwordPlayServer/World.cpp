@@ -60,11 +60,6 @@ World::World()
 	geomB->SetBoxSize(boxSize1[0], boxSize1[1], boxSize1[2]);
 	Bottem->UpdateBoundingInfo(); // Set the position of the box within the simulator 
 	pos; pos.Set(0, 50, -FLOORSIZE); Bottem->SetPos(pos);
-
-	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
-	ObjectArray[AddObject(new Object(this))]->Init(this, 9, 0, 3);
-	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 0, 3);
-	ObjectArray[AddObject(new Object(this))]->Init(this, 0, 10, 0);
 }
 
 
@@ -103,7 +98,7 @@ int World::AddObject(Object* object, bool candelete,bool caninit)
 	}
 	return -1;
 }
-const float DT = 1.0 / 60.0;
+const float DT = 1.0 / 100.0;
 void World::Update(ServerManager * sm)
 {
 	m_Sim->Advance(DT);
@@ -117,7 +112,7 @@ void World::Update(ServerManager * sm)
 }
 void World::SpawnPlayer(int playerid)
 {
-	float OffsetX = 0, OffsetY = 0, OffsetZ = 0;
+	float OffsetX = 0, OffsetY = 10, OffsetZ = 0;
 	float LegHeight = 10;
 	float LegWidth = 5;
 	/*Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL] = AddObject(new Object(this));

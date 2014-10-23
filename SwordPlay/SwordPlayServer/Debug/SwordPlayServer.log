@@ -1,10 +1,15 @@
-﻿Build started 22/10/2014 22:54:35.
+﻿Build started 23/10/2014 23:10:04.
      1>Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _XKEYCHECK_H /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _XKEYCHECK_H /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Object.cpp World.cpp
          World.cpp
-     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\world.cpp(81): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\world.cpp(106): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\world.cpp(76): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\world.cpp(101): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         Object.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\object.cpp(72): warning C4305: 'argument' : truncation from 'double' to 'f32'
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\object.cpp(76): warning C4305: 'argument' : truncation from 'double' to 'f32'
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplayserver\object.cpp(79): warning C4244: 'argument' : conversion from 'double' to 'f32', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe" /INCREMENTAL /NOLOGO enet.lib ws2_32.lib winmm.lib tokamak.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.lib" /MACHINE:X86 Debug\Main.obj
          Debug\Object.obj
@@ -17,4 +22,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:02.69
