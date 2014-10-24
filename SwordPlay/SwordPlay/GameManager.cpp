@@ -54,7 +54,7 @@ void GameManager::MainLoop()
 void GameManager::Update()
 {
 	MainMenu.Update(this);
-	const float poooowwwwwerrrr = 7;// !
+	const float poooowwwwwerrrr = 12;// !
 	if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
 	{
 		Running = false;
