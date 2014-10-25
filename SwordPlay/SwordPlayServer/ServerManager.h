@@ -5,7 +5,7 @@
 class ServerManager
 {
 public:
-	const int PacketsPerUpdate = 10;
+	int PacketsPerUpdate;
 	int PacketsPerUpdateCounter;
 	bool Running;
 	ServerHost * Serverhost;

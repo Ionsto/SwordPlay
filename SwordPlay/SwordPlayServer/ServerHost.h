@@ -8,6 +8,7 @@ class ServerManager;
 class ServerHost
 {
 public:
+	bool ResendAll;
 	ENetAddress address;
 	ENetHost *server;
 	ServerHost();

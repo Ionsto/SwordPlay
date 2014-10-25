@@ -166,6 +166,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	}
 	if (((int)event.packet->data[0]) == Sword_PlayerIds)
 	{
-		gm->world->Player.PlayerObjectIds[(int)event.packet->data[1]] = (int)event.packet->data[2];
+		enet_uint8 bodyid = event.packet->data[1];
+		enet_uint8 worldid = event.packet->data[2];
+		gm->world->Player.PlayerObjectIds[(int)bodyid] = (INT8)worldid;
 	}
 }

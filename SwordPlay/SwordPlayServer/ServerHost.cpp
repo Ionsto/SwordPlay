@@ -30,7 +30,7 @@ void ServerHost::GetMessages(ServerManager * sm)
 				player->Peer = *event.peer;
 				sm->world->Players.push_back(player);
 				sm->world->SpawnPlayer(id);
-				int * Args = new int[3];
+				enet_uint8 * Args = new enet_uint8[3];
 				Args[0] = Sword_PlayerIds;
 				for (int i = 0; i < 10; ++i)
 				{
@@ -42,6 +42,7 @@ void ServerHost::GetMessages(ServerManager * sm)
 				enet_host_flush(server);
 				delete [] Args;
 				std::cout << "Player connected\n";
+				ResendAll = true;
 				break;
 			}
 			case ENET_EVENT_TYPE_RECEIVE:
@@ -138,39 +139,51 @@ void ServerHost::UpdateAll(ServerManager * sm)
 			{
 				neV3 pos;pos.Set(sm->world->ObjectArray[o]->PhysicsBody->GetPos());
 				neV3 rot;rot.Set(sm->world->ObjectArray[o]->RotationEuler);
-				int x, y, z;
-				x = pos[0] * 100; y = pos[1] * 100; z = pos[2] * 100;
-				int x0, x1, y0, y1, z0, z1;
-				x0 = (x & 65280) >> 8; x1 = (x & 255);
-				y0 = (y & 65280) >> 8; y1 = (y & 255);
-				z0 = (z & 65280) >> 8; z1 = (z & 255);
-				int rx, ry, rz;
-				int rx0, rx1, ry0, ry1, rz0, rz1;
-				rx = rot[0] * 100; ry = rot[1] * 100; rz = rot[2] * 100;
-				rx0 = (rx & 65280) >> 8; rx1 = (rx & 255);
-				ry0 = (ry & 65280) >> 8; ry1 = (ry & 255);
-				rz0 = (rz & 65280) >> 8; rz1 = (rz & 255);
-				enet_uint8 * args = new enet_uint8[16];
-				args[0] = Sword_Object;
-				args[1] = o;
-				args[2] = x0;
-				args[3] = x1;
-				args[4] = y0;
-				args[5] = y1;
-				args[6] = z0;
-				args[7] = z1;
-				args[8] = rx0;
-				args[9] = rx1;
-				args[10] = ry0;
-				args[11] = ry1;
-				args[12] = rz0;
-				args[13] = rz1;
-				args[14] = 0;
-				args[15] = sm->world->ObjectArray[o]->Mesh;
-				ENetPacket * packet = enet_packet_create("", 10,0);
-				packet->data = (enet_uint8 *)args;
-				enet_host_broadcast(server, 0, packet);
-				enet_host_flush(server);
+				if ((
+					pos[0] != sm->world->ObjectArray[o]->PrevPos[0] &&
+					pos[1] != sm->world->ObjectArray[o]->PrevPos[1] &&
+					pos[2] != sm->world->ObjectArray[o]->PrevPos[2] &&
+					rot[0] != sm->world->ObjectArray[o]->PrevRot[0] &&
+					rot[1] != sm->world->ObjectArray[o]->PrevRot[1] &&
+					rot[2] != sm->world->ObjectArray[o]->PrevRot[2]) || ResendAll)
+				{
+					sm->world->ObjectArray[o]->PrevPos.Set(pos);
+					sm->world->ObjectArray[o]->PrevRot.Set(rot);
+					int x, y, z;
+					x = pos[0] * 100; y = pos[1] * 100; z = pos[2] * 100;
+					int x0, x1, y0, y1, z0, z1;
+					x0 = (x & 65280) >> 8; x1 = (x & 255);
+					y0 = (y & 65280) >> 8; y1 = (y & 255);
+					z0 = (z & 65280) >> 8; z1 = (z & 255);
+					int rx, ry, rz;
+					int rx0, rx1, ry0, ry1, rz0, rz1;
+					rx = rot[0] * 100; ry = rot[1] * 100; rz = rot[2] * 100;
+					rx0 = (rx & 65280) >> 8; rx1 = (rx & 255);
+					ry0 = (ry & 65280) >> 8; ry1 = (ry & 255);
+					rz0 = (rz & 65280) >> 8; rz1 = (rz & 255);
+					enet_uint8 * args = new enet_uint8[16];
+					args[0] = Sword_Object;
+					args[1] = o;
+					args[2] = x0;
+					args[3] = x1;
+					args[4] = y0;
+					args[5] = y1;
+					args[6] = z0;
+					args[7] = z1;
+					args[8] = rx0;
+					args[9] = rx1;
+					args[10] = ry0;
+					args[11] = ry1;
+					args[12] = rz0;
+					args[13] = rz1;
+					args[14] = 0;
+					args[15] = sm->world->ObjectArray[o]->Mesh;
+					ENetPacket * packet = enet_packet_create("", 10, 0);
+					packet->data = (enet_uint8 *)args;
+					enet_host_broadcast(server, 0, packet);
+					enet_host_flush(server);
+					if (ResendAll){ ResendAll = false; }
+				}
 				//SendCommand(&sm->world->Players[i]->Peer, Sword_Object, args, 9);
 				//delete [] args;
 			}

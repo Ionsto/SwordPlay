@@ -6,6 +6,7 @@ ServerManager::ServerManager()
 	Running = true;
 	ClientCount = 0;
 	PacketsPerUpdateCounter = 0;
+	PacketsPerUpdate = 2;
 }
 
 

@@ -10,6 +10,8 @@ Object::Object(World * world, bool init, float x, float y, float z)
 	if (init){
 		Init(world,x,y,z);
 	}
+	PrevPos.Set(0, 0, 0);
+	PrevRot.Set(0, 0, 0);
 }
 
 
@@ -17,14 +19,14 @@ Object::~Object()
 {
 }
 
-void Object::Init(World * world,float x,float y,float z)
+void Object::Init(World * world,float x,float y,float z,float sx,float sy,float sz)
 {
 	PhysicsBody = world->m_Sim->CreateRigidBody();
 	neV3 pos; pos.Set(x, y, z);
 	PhysicsBody->SetPos(pos);
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
-	neV3 size; size.Set(.5, .5, .5);
+	neV3 size; size.Set(sx, sy, sz);
 	geom = PhysicsBody->AddGeometry();
 	geom->SetBoxSize(size);
 	geom->SetMaterialIndex(1);
