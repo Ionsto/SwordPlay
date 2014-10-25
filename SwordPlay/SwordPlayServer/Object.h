@@ -19,5 +19,6 @@ public:
 	void SetRotation(float x, float y, float z);
 	void UpdateRotation();
 	void Destroy(World * world);
+	void NormaliseEulerRotation();
 };
 

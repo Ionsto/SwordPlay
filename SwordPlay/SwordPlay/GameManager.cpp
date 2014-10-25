@@ -55,59 +55,65 @@ void GameManager::Update()
 {
 	MainMenu.Update(this);
 	const float poooowwwwwerrrr = 12;// !
-	float theta = world->Camera->getRotation().Y;
-	if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
+		if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
+		{
+			Running = false;
+		}
+	if (world->PlayerObjectIds[0] != -1)
 	{
-		Running = false;
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_A))
-	{
-		world->QuedBodyMovement.X = poooowwwwwerrrr;
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_D))
-	{
-		world->QuedBodyMovement.X = -poooowwwwwerrrr;
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_W))
-	{
-		//world->QuedBodyMovement.X = poooowwwwwerrrr * cos(theta * (3.14 / 180));
-		//world->QuedBodyMovement.Z = poooowwwwwerrrr * sin(theta * (3.14 / 180));
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_S))
-	{
-		//world->QuedBodyMovement.X = -poooowwwwwerrrr * cos(theta * (3.14 / 180)) * ((theta - 180) / abs(theta - 180));
-		//world->QuedBodyMovement.Z = -poooowwwwwerrrr * sin(theta * (3.14 / 180)) * ((theta - 180) / abs(theta - 180));
-	}
-	if (this->KeyListener.IsKeyDown(KEY_SPACE))
-	{
-		//world->QuedBodyMovement.Y = 50;
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
-	{
-		world->QuedBodyRotation.Y = 10;
-		//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
-		//world->Camera->updateAbsolutePosition();
-		//world->Camera->setRotation(vector3df(50, 0, 0));
-	}
-	if (this->KeyListener.IsKeyDown(KEY_KEY_E))
-	{
-		world->QuedBodyRotation.Y = -10;
-		//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
-		//world->Camera->updateAbsolutePosition();
-		//world->Camera->setRotation(vector3df(50, 0, 0));
-	}
-	if (this->KeyListener.MouseState.PosChanged)
-	{
-		float x = KeyListener.MouseState.PrevPosition.X - KeyListener.MouseState.Position.X;
-		float y = KeyListener.MouseState.PrevPosition.Y - KeyListener.MouseState.Position.Y;
-		float speed = 1;
-		if (x > speed)
-			x = speed;
-		if (y > speed)
-			y = speed;
-		world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
-		KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
-		KeyListener.MouseState.PosChanged = false;
+		float theta = world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Y;
+		//std::cout << "X:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().X << ",Y:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Y << ",Z:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Z << "\n";
+		if (theta < 0){ theta += 360; }
+		if (theta > 360){ theta -= 360; }
+		if (this->KeyListener.IsKeyDown(KEY_KEY_A))
+		{
+			world->QuedBodyMovement.X = poooowwwwwerrrr;
+		}
+		if (this->KeyListener.IsKeyDown(KEY_KEY_D))
+		{
+			world->QuedBodyMovement.X = -poooowwwwwerrrr;
+		}
+		if (this->KeyListener.IsKeyDown(KEY_KEY_W))
+		{
+			world->QuedBodyMovement.X = poooowwwwwerrrr * cos(theta * (3.14 / 180));
+			world->QuedBodyMovement.Z = poooowwwwwerrrr * sin(theta * (3.14 / 180));
+		}
+		if (this->KeyListener.IsKeyDown(KEY_KEY_S))
+		{
+			world->QuedBodyMovement.X = -poooowwwwwerrrr * cos(theta * (3.14 / 180));
+			world->QuedBodyMovement.Z = -poooowwwwwerrrr * sin(theta * (3.14 / 180));
+		}
+		if (this->KeyListener.IsKeyDown(KEY_SPACE))
+		{
+			//world->QuedBodyMovement.Y = 50;
+		}
+		if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
+		{
+			world->QuedBodyRotation.Y = 10;
+			//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
+			//world->Camera->updateAbsolutePosition();
+			//world->Camera->setRotation(vector3df(50, 0, 0));
+		}
+		if (this->KeyListener.IsKeyDown(KEY_KEY_E))
+		{
+			world->QuedBodyRotation.Y = -10;
+			//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
+			//world->Camera->updateAbsolutePosition();
+			//world->Camera->setRotation(vector3df(50, 0, 0));
+		}
+		if (this->KeyListener.MouseState.PosChanged)
+		{
+			float x = KeyListener.MouseState.PrevPosition.X - KeyListener.MouseState.Position.X;
+			float y = KeyListener.MouseState.PrevPosition.Y - KeyListener.MouseState.Position.Y;
+			float speed = 1;
+			if (abs(x) > speed)
+				x = speed * (x / abs(x));
+			if (abs(y) > speed)
+				y = speed * (y / abs(y));
+			world->QuedBodyRotation.set(world->QuedBodyRotation.X + y, world->QuedBodyRotation.Y + x, world->QuedBodyRotation.Z);
+			KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
+			KeyListener.MouseState.PosChanged = false;
+		}
 	}
 	world->Update(this);
 }
@@ -158,8 +164,8 @@ void GameManager::UpdateServer()
 				Args[8] = Connector->GetExp(world->QuedBodyMovement.Y);
 				Args[9] = Connector->GetExp(world->QuedBodyMovement.Z);
 				Args[10] = Connector->GetExp(world->QuedBodyRotation.X);
-				Args[11] = Connector->GetExp(world->QuedBodyRotation.X);
-				Args[12] = Connector->GetExp(world->QuedBodyRotation.X);
+				Args[11] = Connector->GetExp(world->QuedBodyRotation.Y);
+				Args[12] = Connector->GetExp(world->QuedBodyRotation.Z);
 				Connector->SendCommands(Sword_MoveObject, Args, 13);
 				delete[] Args;
 			}

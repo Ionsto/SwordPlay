@@ -48,7 +48,30 @@ void Object::Update(World * world)
 	}
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
+	UpdateRotation();
+	NormaliseEulerRotation();
 	//std::cout << PhysicsBody->GetPos()[0] << "," << PhysicsBody->GetPos()[1] << "," << PhysicsBody->GetPos()[2] << "," << "\n";
+}
+void Object::NormaliseEulerRotation()
+{
+	if (RotationEuler.X() > 360)
+	{
+		RotationEuler[0] -= 360; }
+	if (RotationEuler.Y() > 360)
+	{
+		RotationEuler[1] -= 360; }
+	if (RotationEuler.Z() > 360)
+	{ 
+		RotationEuler[2] -= 360; }
+	if (RotationEuler.X() < 0)
+	{
+		RotationEuler[0] += 360; }
+	if (RotationEuler.Y() < 0)
+	{ 
+		RotationEuler[1] += 360; }
+	if (RotationEuler.Z() < 0)
+	{
+		RotationEuler[2] += 360; }
 }
 void Object::SetLocation(float x, float y, float z)
 {
@@ -71,15 +94,25 @@ void Object::UpdateRotation()
 	double sqz = rot.Z*rot.Z;
 	double unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
 	double test = rot.X*rot.Y + rot.Z*rot.W;
+	float heading = 0;
+	float attitude = 0;
+	float bank = 0;
 	if (test > 0.499*unit) { // singularity at north pole
-		RotationEuler.Set(0, 2 * atan2(rot.X, rot.W), 3.14 / 2);
-		return;
+		heading = 2 * atan2(rot.X, rot.W);
+		attitude = 3.14 / 2;
+		bank = 0;
+	}else if (test < -0.499*unit) { // singularity at south pole
+		heading = -2 * atan2(rot.X, rot.W);
+		attitude = -3.14 / 2;
+		bank = 0;
 	}
-	if (test < -0.499*unit) { // singularity at south pole
-		RotationEuler.Set(0, -2 * atan2(rot.X, rot.W), -3.14 / 2);
-		return;
+	else
+	{
+		heading = atan2(2 * rot.X*rot.W - 2 * rot.Y*rot.Z, -sqx + sqy - sqz + sqw);
+		attitude = asin(2 * test / unit);
+		bank = atan2(2 * rot.Y*rot.W - 2 * rot.X*rot.Z, sqx - sqy - sqz + sqw);
 	}
-	RotationEuler.Set(atan2(2 * rot.X*rot.W - 2 * rot.Y*rot.Z, -sqx + sqy - sqz + sqw), asin(2 * test / unit), atan2(2 * rot.Y*rot.W - 2 * rot.X*rot.Z, sqx - sqy - sqz + sqw));
+	RotationEuler.Set(bank, heading, attitude);
 }
 void Object::Destroy(World * world)
 {
