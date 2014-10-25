@@ -5,8 +5,8 @@
 World::World()
 {
 	neSimulatorSizeInfo sizeInfo;
-	RigidBodyCount = 40;
-	ObjectCount = 20;
+	ObjectCount = 40;
+	RigidBodyCount = ObjectCount + 20;
 	sizeInfo.rigidBodiesCount = this->RigidBodyCount;
 	sizeInfo.animatedBodiesCount = 5;
 	neV3 gravity = neV3();
@@ -98,7 +98,7 @@ int World::AddObject(Object* object, bool candelete,bool caninit)
 	}
 	return -1;
 }
-const float DT = 1.0 / 100.0;
+const float DT = 1.0 / 50.0;
 void World::Update(ServerManager * sm)
 {
 	m_Sim->Advance(DT);

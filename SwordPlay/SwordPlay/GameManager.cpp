@@ -55,6 +55,7 @@ void GameManager::Update()
 {
 	MainMenu.Update(this);
 	const float poooowwwwwerrrr = 12;// !
+	float theta = world->Camera->getRotation().Y;
 	if (this->KeyListener.IsKeyDown(KEY_ESCAPE))
 	{
 		Running = false;
@@ -69,24 +70,28 @@ void GameManager::Update()
 	}
 	if (this->KeyListener.IsKeyDown(KEY_KEY_W))
 	{
-		world->QuedBodyMovement.Z = poooowwwwwerrrr;
+		//world->QuedBodyMovement.X = poooowwwwwerrrr * cos(theta * (3.14 / 180));
+		//world->QuedBodyMovement.Z = poooowwwwwerrrr * sin(theta * (3.14 / 180));
 	}
 	if (this->KeyListener.IsKeyDown(KEY_KEY_S))
 	{
-		world->QuedBodyMovement.Z = -poooowwwwwerrrr;
+		//world->QuedBodyMovement.X = -poooowwwwwerrrr * cos(theta * (3.14 / 180)) * ((theta - 180) / abs(theta - 180));
+		//world->QuedBodyMovement.Z = -poooowwwwwerrrr * sin(theta * (3.14 / 180)) * ((theta - 180) / abs(theta - 180));
 	}
 	if (this->KeyListener.IsKeyDown(KEY_SPACE))
 	{
-		world->QuedBodyMovement.Y = 100;
+		//world->QuedBodyMovement.Y = 50;
 	}
 	if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
 	{
+		world->QuedBodyRotation.Y = 10;
 		//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
 		//world->Camera->updateAbsolutePosition();
 		//world->Camera->setRotation(vector3df(50, 0, 0));
 	}
 	if (this->KeyListener.IsKeyDown(KEY_KEY_E))
 	{
+		world->QuedBodyRotation.Y = -10;
 		//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
 		//world->Camera->updateAbsolutePosition();
 		//world->Camera->setRotation(vector3df(50, 0, 0));

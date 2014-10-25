@@ -56,6 +56,13 @@ void ServerHost::GetMessages(ServerManager * sm)
 				{
 					if (event.peer->address.host == (sm->world->Players.at(i))->Peer.address.host)
 					{
+						for (int o = 0; o < 10; ++o)
+						{
+							if (sm->world->Players[i]->BodyPartIds[o] != -1)
+							{
+								sm->world->ObjectArray[sm->world->Players[i]->BodyPartIds[o]]->Destroy(sm->world);
+							}
+						}
 						delete sm->world->Players[i];
 						sm->world->Players.erase(sm->world->Players.begin() + i);
 						std::cout << "player:" << i << " disconnected\n";
@@ -94,15 +101,15 @@ void ServerHost::ParsePacket(ServerManager * sm,ENetEvent event)
 			{
 				//If the incoming dx actualy changes somthing, override movement
 				for (int i = 0; i < 3; ++i){
-					enet_uint8 pos = event.packet->data[i + 2];
-					enet_uint8 rot = event.packet->data[i + 5];
-					enet_uint8 Expos = event.packet->data[i + 8];
-					enet_uint8 Exrot = event.packet->data[i + 10];
+					INT8 pos = event.packet->data[i + 2];
+					INT8 rot = event.packet->data[i + 5];
+					INT8 Expos = event.packet->data[i + 8];
+					INT8 Exrot = event.packet->data[i + 11];
 					if (((int)pos) != 0){
-						sm->world->ObjectArray[Id]->QuedMovePos[i] = event.packet->data[i + 2] * powf(10, (int)Expos);
+						sm->world->ObjectArray[Id]->QuedMovePos[i] = pos * powf(10, (int)Expos);
 					}
-					if (((int)pos) != 0){
-						sm->world->ObjectArray[Id]->QuedMoveRot[i] = event.packet->data[i + 5] * powf(10, (int)Exrot);
+					if (((int)rot) != 0){
+						sm->world->ObjectArray[Id]->QuedMoveRot[i] = rot * powf(10, (int)Exrot);
 					}
 				}
 			}

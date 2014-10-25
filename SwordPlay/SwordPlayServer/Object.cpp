@@ -42,7 +42,10 @@ void Object::Update(World * world)
 	{
 		PhysicsBody->ApplyImpulse(QuedMovePos);
 	}
-	PhysicsBody->ApplyTwist(QuedMoveRot);
+	if (QuedMoveRot.X() != 0 || QuedMoveRot.Y() != 0 || QuedMoveRot.Z() != 0)
+	{
+		PhysicsBody->ApplyTwist(QuedMoveRot);
+	}
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
 	//std::cout << PhysicsBody->GetPos()[0] << "," << PhysicsBody->GetPos()[1] << "," << PhysicsBody->GetPos()[2] << "," << "\n";
@@ -77,4 +80,9 @@ void Object::UpdateRotation()
 		return;
 	}
 	RotationEuler.Set(atan2(2 * rot.X*rot.W - 2 * rot.Y*rot.Z, -sqx + sqy - sqz + sqw), asin(2 * test / unit), atan2(2 * rot.Y*rot.W - 2 * rot.X*rot.Z, sqx - sqy - sqz + sqw));
+}
+void Object::Destroy(World * world)
+{
+	world->ObjectArray[Id] = NULL;
+	delete this;
 }

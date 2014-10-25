@@ -18,5 +18,6 @@ public:
 	void SetLocation(float x, float y, float z);
 	void SetRotation(float x, float y, float z);
 	void UpdateRotation();
+	void Destroy(World * world);
 };
 
