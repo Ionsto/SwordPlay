@@ -9,7 +9,8 @@ Object::Object(GameManager * gm,int mesh)
 	Mesh = mesh;
 	Node = gm->smgr->addAnimatedMeshSceneNode(gm->world->Meshes[Mesh]);
 	Node->setMaterialTexture(0, gm->driver->getTexture("./Res/Arm.png"));
-	Node->setPosition(vector3df(rand() % 30,0, rand() % 30));
+	//Node->setPosition(vector3df(rand() % 30,0, rand() % 30));
+	//Node->setRotation(vector3df(90, 0, 0));
 	Node->setFrameLoop(0, 60);
 	AnimationCount = 4;
 	Animations = new Animation[AnimationCount];

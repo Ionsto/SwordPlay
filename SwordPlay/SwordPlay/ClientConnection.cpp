@@ -140,13 +140,13 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 			Mesh = 1;
 			if (Mesh < 0){ Mesh = 0; }
 			if (Mesh > gm->world->MeshCount){ Mesh = gm->world->MeshCount - 1; }
-			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
+			if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] == id)
 			{
 				//The head of the mesh family
 				Mesh = 1;
 			}
 			gm->world->ObjectArray[id] = new Object(gm, Mesh);
-			if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->PlayerObjectIds[Sword_PlayerId_Head] == id)
+			if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1 && gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] == id)
 			{
 				//gm->world->Camera->setParent(gm->world->ObjectArray[id]->Node);
 				//gm->world->MoveCamera(vector3df(0, 0 + 10, 0), vector3df(0, 0, 0));
@@ -157,8 +157,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 		}
 		//std::cout << ",X:" << X << ",Y:" << Y << ",Z:" << Z << "\n";
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X / 100.0, Y / 100.0, Z / 100.0));
-		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX / 100.0,RY / 100.0,  RZ / 100.0));
-		if (gm->world->PlayerObjectIds[Sword_PlayerId_Head] != -1)
+		gm->world->ObjectArray[id]->Node->setRotation(vector3df( RZ / 100.0,RX / 100.0, RY / 100.0));
+		if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
 			//gm->world->MoveCamera(vector3df(X, Y + 5, Z), vector3df(RX, RY, RZ));
 			//Camera->updateAbsolutePosition();
@@ -166,6 +166,6 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 	}
 	if (((int)event.packet->data[0]) == Sword_PlayerIds)
 	{
-		gm->world->PlayerObjectIds[(int)event.packet->data[1]] = (int)event.packet->data[2];
+		gm->world->Player.PlayerObjectIds[(int)event.packet->data[1]] = (int)event.packet->data[2];
 	}
 }

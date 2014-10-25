@@ -19,15 +19,18 @@ public:
 };
 class World{
 public:
-	int PlayerObjectIds[10];
+	struct Player
+	{
+		int PlayerObjectIds[10];
+		vector3df QuedBodyMovement;
+		vector3df QuedBodyRotation;
+		std::vector<Movement> QuedMovment;
+	} Player;
 	int MeshCount;
 	IAnimatedMesh ** Meshes;
 	ICameraSceneNode * Camera;
 	int ObjectCount;
 	Object ** ObjectArray;
-	std::vector<Movement> QuedMovment;
-	vector3df QuedBodyMovement;
-	vector3df QuedBodyRotation;
 	World(GameManager * gm);
 	~World();
 	void Update(GameManager * gm);

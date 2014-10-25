@@ -33,7 +33,7 @@ void Object::Init(World * world,float x,float y,float z)
 	mass = 10.0f;
 	PhysicsBody->SetInertiaTensor(neBoxInertiaTensor(size, mass));
 	PhysicsBody->SetMass(mass);
-	PhysicsBody->SetAngularDamping(0.01f);
+	PhysicsBody->SetAngularDamping(0.1f);
 
 }
 void Object::Update(World * world)
@@ -117,5 +117,6 @@ void Object::UpdateRotation()
 void Object::Destroy(World * world)
 {
 	world->ObjectArray[Id] = NULL;
+	world->m_Sim->FreeRigidBody(PhysicsBody);
 	delete this;
 }

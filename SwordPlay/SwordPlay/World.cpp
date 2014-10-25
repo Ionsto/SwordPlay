@@ -3,10 +3,10 @@
 
 World::World(GameManager * gm)
 {
-	QuedBodyMovement = vector3df();
-	QuedBodyRotation = vector3df();
+	Player.QuedBodyMovement = vector3df();
+	Player.QuedBodyRotation = vector3df();
 	for (int i = 0; i < 10; ++i)
-		PlayerObjectIds[i] = -1;
+		Player.PlayerObjectIds[i] = -1;
 	ObjectCount = 100;
 	ObjectArray = new Object*[ObjectCount];
 	for (int i = 0; i < ObjectCount;++i)
