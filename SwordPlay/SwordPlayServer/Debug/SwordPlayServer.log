@@ -1,38 +1,9 @@
-﻿Build started 26/10/2014 18:03:14.
-     1>Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" on node 3 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _XKEYCHECK_H /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp Object.cpp Player.cpp ServerHost.cpp ServerManager.cpp World.cpp
-         World.cpp
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\world.cpp(76): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\world.cpp(101): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-         ServerManager.cpp
-         ServerHost.cpp
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(56): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(113): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(134): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(153): warning C4244: '=' : conversion from 'f32' to 'int', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(160): warning C4244: '=' : conversion from 'f32' to 'int', possible loss of data
-         Player.cpp
-         Object.cpp
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(104): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(108): warning C4305: '=' : truncation from 'double' to 'float'
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(113): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(114): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(115): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-         Main.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe" /INCREMENTAL /NOLOGO enet.lib ws2_32.lib winmm.lib tokamak.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.lib" /MACHINE:X86 Debug\Main.obj
-         Debug\Object.obj
-         Debug\Player.obj
-         Debug\ServerHost.obj
-         Debug\ServerManager.obj
-         Debug\World.obj
-         LINK : C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe not found or not built by the last incremental link; performing full link
-     1>LINK : fatal error LNK1104: cannot open file 'C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe'
-     1>Done Building Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" (Build target(s)) -- FAILED.
+﻿Build started 26/10/2014 18:55:11.
+     1>Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         SwordPlayServer.vcxproj -> C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe
+     1>Done Building Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:09.69
+Time Elapsed 00:00:00.10

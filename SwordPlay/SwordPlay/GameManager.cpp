@@ -59,7 +59,7 @@ void GameManager::Update()
 		{
 			Running = false;
 		}
-	if (world->Player.PlayerObjectIds[0] != -1)
+	if (world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 	{
 		float theta = world->ObjectArray[world->Player.PlayerObjectIds[0]]->Node->getRotation().Y;
 		//std::cout << "X:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().X << ",Y:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Y << ",Z:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Z << "\n";
