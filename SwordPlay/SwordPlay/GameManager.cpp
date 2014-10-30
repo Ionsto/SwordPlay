@@ -61,59 +61,62 @@ void GameManager::Update()
 		}
 	if (world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 	{
-		float theta = world->ObjectArray[world->Player.PlayerObjectIds[0]]->Node->getRotation().Y;
-		//std::cout << "X:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().X << ",Y:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Y << ",Z:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Z << "\n";
-		if (theta < 0){ theta += 360; }
-		if (theta > 360){ theta -= 360; }
-		if (this->KeyListener.IsKeyDown(KEY_KEY_A))
+		if (world->ObjectArray[world->Player.PlayerObjectIds[Sword_PlayerId_Head]] != NULL)
 		{
-			world->Player.QuedBodyMovement.X = poooowwwwwerrrr;
-		}
-		if (this->KeyListener.IsKeyDown(KEY_KEY_D))
-		{
-			world->Player.QuedBodyMovement.X = -poooowwwwwerrrr;
-		}
-		if (this->KeyListener.IsKeyDown(KEY_KEY_W))
-		{
-			world->Player.QuedBodyMovement.X = poooowwwwwerrrr * cosf(theta * (3.14 / 180.0));
-			world->Player.QuedBodyMovement.Z = poooowwwwwerrrr * sinf(theta * (3.14 / 180.0));
-		}
-		if (this->KeyListener.IsKeyDown(KEY_KEY_S))
-		{
-			world->Player.QuedBodyMovement.X = -poooowwwwwerrrr * cosf(theta * (3.14 / 180.0));
-			world->Player.QuedBodyMovement.Z = -poooowwwwwerrrr * sinf(theta * (3.14 / 180.0));
-		}
-		if (this->KeyListener.IsKeyDown(KEY_SPACE))
-		{
-			//world->QuedBodyMovement.Y = 50;
-		}
-		float rotpowwwwweeerr = 10;
-		if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
-		{
-			world->Player.QuedBodyRotation.Y = rotpowwwwweeerr;
-			//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
-			//world->Camera->updateAbsolutePosition();
-			//world->Camera->setRotation(vector3df(50, 0, 0));
-		}
-		if (this->KeyListener.IsKeyDown(KEY_KEY_E))
-		{
-			world->Player.QuedBodyRotation.Y = -rotpowwwwweeerr;
-			//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
-			//world->Camera->updateAbsolutePosition();
-			//world->Camera->setRotation(vector3df(50, 0, 0));
-		}
-		if (this->KeyListener.MouseState.PosChanged)
-		{
-			float x = KeyListener.MouseState.PrevPosition.X - KeyListener.MouseState.Position.X;
-			float y = KeyListener.MouseState.PrevPosition.Y - KeyListener.MouseState.Position.Y;
-			float speed = 1;
-			if (abs(x) > speed)
-				x = speed * (x / abs(x));
-			if (abs(y) > speed)
-				y = speed * (y / abs(y));
-			world->Player.QuedBodyRotation.set(world->Player.QuedBodyRotation.X + y, world->Player.QuedBodyRotation.Y + x, world->Player.QuedBodyRotation.Z);
-			KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
-			KeyListener.MouseState.PosChanged = false;
+			float theta = world->ObjectArray[world->Player.PlayerObjectIds[0]]->Node->getRotation().Y;
+			//std::cout << "X:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().X << ",Y:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Y << ",Z:" << world->ObjectArray[world->PlayerObjectIds[0]]->Node->getRotation().Z << "\n";
+			if (theta < 0){ theta += 360; }
+			if (theta > 360){ theta -= 360; }
+			if (this->KeyListener.IsKeyDown(KEY_KEY_A))
+			{
+				world->Player.QuedBodyMovement.X = poooowwwwwerrrr;
+			}
+			if (this->KeyListener.IsKeyDown(KEY_KEY_D))
+			{
+				world->Player.QuedBodyMovement.X = -poooowwwwwerrrr;
+			}
+			if (this->KeyListener.IsKeyDown(KEY_KEY_W))
+			{
+				world->Player.QuedBodyMovement.X = poooowwwwwerrrr * cosf(theta * (3.14 / 180.0));
+				world->Player.QuedBodyMovement.Z = poooowwwwwerrrr * sinf(theta * (3.14 / 180.0));
+			}
+			if (this->KeyListener.IsKeyDown(KEY_KEY_S))
+			{
+				world->Player.QuedBodyMovement.X = -poooowwwwwerrrr * cosf(theta * (3.14 / 180.0));
+				world->Player.QuedBodyMovement.Z = -poooowwwwwerrrr * sinf(theta * (3.14 / 180.0));
+			}
+			if (this->KeyListener.IsKeyDown(KEY_SPACE))
+			{
+				//world->QuedBodyMovement.Y = 50;
+			}
+			float rotpowwwwweeerr = 10;
+			if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
+			{
+				world->Player.QuedBodyRotation.Y = rotpowwwwweeerr;
+				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
+				//world->Camera->updateAbsolutePosition();
+				//world->Camera->setRotation(vector3df(50, 0, 0));
+			}
+			if (this->KeyListener.IsKeyDown(KEY_KEY_E))
+			{
+				world->Player.QuedBodyRotation.Y = -rotpowwwwweeerr;
+				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
+				//world->Camera->updateAbsolutePosition();
+				//world->Camera->setRotation(vector3df(50, 0, 0));
+			}
+			if (this->KeyListener.MouseState.PosChanged)
+			{
+				float x = KeyListener.MouseState.PrevPosition.X - KeyListener.MouseState.Position.X;
+				float y = KeyListener.MouseState.PrevPosition.Y - KeyListener.MouseState.Position.Y;
+				float speed = 1;
+				if (abs(x) > speed)
+					x = speed * (x / abs(x));
+				if (abs(y) > speed)
+					y = speed * (y / abs(y));
+				world->Player.QuedBodyRotation.set(world->Player.QuedBodyRotation.X + y, world->Player.QuedBodyRotation.Y + x, world->Player.QuedBodyRotation.Z);
+				KeyListener.MouseState.PrevPosition = KeyListener.MouseState.Position;
+				KeyListener.MouseState.PosChanged = false;
+			}
 		}
 	}
 	world->Update(this);
@@ -184,7 +187,7 @@ void GameManager::UpdateServer()
 		}
 		else
 		{
-			world->Player.PlayerObjectIds[Sword_PlayerId_Head] = -1;
+			//world->Player.PlayerObjectIds[Sword_PlayerId_Head] = -1;
 		}
 	}
 }
