@@ -178,8 +178,8 @@ void ServerHost::UpdateAll(ServerManager * sm)
 					args[13] = rz1;
 					args[14] = 0;
 					args[15] = sm->world->ObjectArray[o]->Mesh;
-					ENetPacket * packet = enet_packet_create("", 10, 0);
-					packet->data = (enet_uint8 *)args;
+					ENetPacket * packet = enet_packet_create(NULL, 16, 0);
+					packet->data = args;
 					enet_host_broadcast(server, 0, packet);
 					enet_host_flush(server);
 					if (ResendAll){ ResendAll = false; }
