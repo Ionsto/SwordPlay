@@ -36,6 +36,7 @@ void Object::Init(World * world,float x,float y,float z,float sx,float sy,float 
 	PhysicsBody->SetInertiaTensor(neBoxInertiaTensor(size, mass));
 	PhysicsBody->SetMass(mass);
 	PhysicsBody->SetAngularDamping(0.1f);
+	RotationEuler.Set(0, 0, 0);
 
 }
 void Object::Update(World * world)
@@ -50,30 +51,39 @@ void Object::Update(World * world)
 	}
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
-	UpdateRotation();
+	//UpdateRotation();
+	RotationEuler[1] += 1;
 	NormaliseEulerRotation();
+	//RotationEuler[0] = 0;
+	//RotationEuler[2] = 0;
 	//std::cout << PhysicsBody->GetPos()[0] << "," << PhysicsBody->GetPos()[1] << "," << PhysicsBody->GetPos()[2] << "," << "\n";
 }
 void Object::NormaliseEulerRotation()
 {
 	if (RotationEuler.X() > 360)
 	{
-		RotationEuler[0] -= 360; }
+		RotationEuler[0] -= 360;
+	}
 	if (RotationEuler.Y() > 360)
 	{
-		RotationEuler[1] -= 360; }
+		RotationEuler[1] -= 360;
+	}
 	if (RotationEuler.Z() > 360)
 	{ 
-		RotationEuler[2] -= 360; }
+		RotationEuler[2] -= 360;
+	}
 	if (RotationEuler.X() < 0)
 	{
-		RotationEuler[0] += 360; }
+		RotationEuler[0] += 360;
+	}
 	if (RotationEuler.Y() < 0)
 	{ 
-		RotationEuler[1] += 360; }
+		RotationEuler[1] += 360;
+	}
 	if (RotationEuler.Z() < 0)
 	{
-		RotationEuler[2] += 360; }
+		RotationEuler[2] += 360;
+	}
 }
 void Object::SetLocation(float x, float y, float z)
 {

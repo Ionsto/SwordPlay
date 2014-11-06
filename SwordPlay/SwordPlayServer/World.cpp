@@ -115,6 +115,8 @@ void World::SpawnPlayer(int playerid)
 	float OffsetX = 0, OffsetY = 10, OffsetZ = 0;
 	float LegHeight = 10;
 	float LegWidth = 5;
+	float BodyHeight = 10;
+	/*
 	Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Init(this, OffsetX + LegWidth, OffsetY, OffsetZ);
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Mesh = 1;
@@ -127,8 +129,7 @@ void World::SpawnPlayer(int playerid)
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL]]->Mesh = 1;
 	Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR]]->Init(this, OffsetX - LegWidth, OffsetY + LegHeight, OffsetZ);
-	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR]]->Mesh = 1;
-	float BodyHeight = 10;
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperR]]->Mesh = 1;*/
 	Players[playerid]->BodyPartIds[Sword_PlayerId_Head] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_Head]]->Init(this, OffsetX, OffsetY + LegHeight + BodyHeight, OffsetZ);
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_Head]]->Mesh = 1;

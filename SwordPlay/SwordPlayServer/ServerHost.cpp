@@ -139,25 +139,25 @@ void ServerHost::UpdateAll(ServerManager * sm)
 			{
 				neV3 pos;pos.Set(sm->world->ObjectArray[o]->PhysicsBody->GetPos());
 				neV3 rot;rot.Set(sm->world->ObjectArray[o]->RotationEuler);
-				if ((
-					pos[0] != sm->world->ObjectArray[o]->PrevPos[0] &&
-					pos[1] != sm->world->ObjectArray[o]->PrevPos[1] &&
-					pos[2] != sm->world->ObjectArray[o]->PrevPos[2] &&
-					rot[0] != sm->world->ObjectArray[o]->PrevRot[0] &&
-					rot[1] != sm->world->ObjectArray[o]->PrevRot[1] &&
-					rot[2] != sm->world->ObjectArray[o]->PrevRot[2]) || ResendAll)
+				if (
+					pos[0] != sm->world->ObjectArray[o]->PrevPos[0] ||
+					pos[1] != sm->world->ObjectArray[o]->PrevPos[1] ||
+					pos[2] != sm->world->ObjectArray[o]->PrevPos[2] ||
+					rot[0] != sm->world->ObjectArray[o]->PrevRot[0] ||
+					rot[1] != sm->world->ObjectArray[o]->PrevRot[1] ||
+					rot[2] != sm->world->ObjectArray[o]->PrevRot[2] || ResendAll)
 				{
 					sm->world->ObjectArray[o]->PrevPos.Set(pos);
 					sm->world->ObjectArray[o]->PrevRot.Set(rot);
-					int x, y, z;
-					x = pos[0] * 100; y = pos[1] * 100; z = pos[2] * 100;
-					int x0, x1, y0, y1, z0, z1;
+					INT16 x, y, z;
+					x = pos[0]; y = pos[1]; z = pos[2];
+					INT8 x0, x1, y0, y1, z0, z1;
 					x0 = (x & 65280) >> 8; x1 = (x & 255);
 					y0 = (y & 65280) >> 8; y1 = (y & 255);
 					z0 = (z & 65280) >> 8; z1 = (z & 255);
-					int rx, ry, rz;
-					int rx0, rx1, ry0, ry1, rz0, rz1;
-					rx = rot[0] * 100; ry = rot[1] * 100; rz = rot[2] * 100;
+					INT16 rx, ry, rz;
+					UINT8 rx0, rx1, ry0, ry1, rz0, rz1;
+					rx = rot[0]; ry = rot[1]; rz = rot[2];
 					rx0 = (rx & 65280) >> 8; rx1 = (rx & 255);
 					ry0 = (ry & 65280) >> 8; ry1 = (ry & 255);
 					rz0 = (rz & 65280) >> 8; rz1 = (rz & 255);

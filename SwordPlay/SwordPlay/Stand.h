@@ -1,5 +1,3 @@
-//All position values are sent * 10 , then /10 to get to get better acuraccy
-
 //Position of any object [ID,X0,X1,Y0,Y1,Z0,Z1,RX0,RX1,RY0,RY1,RZ0,RZ1,animation,mesh]
 const int Sword_Object = 0;
 //An effect [X,Y,Z,Type]

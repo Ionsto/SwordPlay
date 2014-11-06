@@ -23,6 +23,7 @@ void GameManager::Init()
 	//MainMenu = GuiMain();
 	//MainMenu.StartDisplay();
 	world = new World(this);
+	world->ObjectArray[5] = new Object(this, 1);
 	enet_initialize();
 	Connector = new ClientConnection();
 	Connector->Connect("localhost", 25565);
