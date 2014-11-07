@@ -1,7 +1,7 @@
-﻿Build started 06/11/2014 22:49:31.
+﻿Build started 07/11/2014 18:39:35.
      1>Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlayServer\SwordPlayServer.vcxproj" on node 3 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _XKEYCHECK_H /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ServerHost.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /D _XKEYCHECK_H /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Object.cpp ServerHost.cpp
          ServerHost.cpp
      1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(56): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(110): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
@@ -9,6 +9,14 @@
      1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(134): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(153): warning C4244: '=' : conversion from 'f32' to 'INT16', possible loss of data
      1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\serverhost.cpp(160): warning C4244: '=' : conversion from 'f32' to 'INT16', possible loss of data
+         Object.cpp
+     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(114): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(118): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(123): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(124): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplayserver\object.cpp(125): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.exe" /INCREMENTAL /NOLOGO enet.lib ws2_32.lib winmm.lib tokamak.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlayServer.lib" /MACHINE:X86 Debug\Main.obj
          Debug\Object.obj
@@ -23,4 +31,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.02
+Time Elapsed 00:00:05.42

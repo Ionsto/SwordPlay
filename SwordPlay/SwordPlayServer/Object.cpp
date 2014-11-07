@@ -51,8 +51,8 @@ void Object::Update(World * world)
 	}
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
-	//UpdateRotation();
-	RotationEuler[1] += 1;
+	UpdateRotation();
+	//RotationEuler[1] += 1;
 	NormaliseEulerRotation();
 	//RotationEuler[0] = 0;
 	//RotationEuler[2] = 0;
