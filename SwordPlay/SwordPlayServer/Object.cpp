@@ -49,38 +49,42 @@ void Object::Update(World * world)
 	{
 		PhysicsBody->ApplyTwist(QuedMoveRot);
 	}
-	QuedMovePos.Set(0, 0, 0);
-	QuedMoveRot.Set(0, 0, 0);
 	UpdateRotation();
 	//RotationEuler[1] += 1;
 	NormaliseEulerRotation();
+	if (QuedMoveRot.X() != 0 || QuedMoveRot.Y() != 0 || QuedMoveRot.Z() != 0)
+	{
+		std::cout << RotationEuler[0] << "," << RotationEuler[1] << "," << RotationEuler[2] << "," << "\n";
+	}
+	QuedMovePos.Set(0, 0, 0);
+	QuedMoveRot.Set(0, 0, 0);
 	//RotationEuler[0] = 0;
 	//RotationEuler[2] = 0;
 	//std::cout << PhysicsBody->GetPos()[0] << "," << PhysicsBody->GetPos()[1] << "," << PhysicsBody->GetPos()[2] << "," << "\n";
 }
 void Object::NormaliseEulerRotation()
 {
-	if (RotationEuler.X() > 360)
+	if (RotationEuler[0] > 360)
 	{
 		RotationEuler[0] -= 360;
 	}
-	if (RotationEuler.Y() > 360)
+	if (RotationEuler[1] > 360)
 	{
 		RotationEuler[1] -= 360;
 	}
-	if (RotationEuler.Z() > 360)
+	if (RotationEuler[2] > 360)
 	{ 
 		RotationEuler[2] -= 360;
 	}
-	if (RotationEuler.X() < 0)
+	if (RotationEuler[0] < 0)
 	{
 		RotationEuler[0] += 360;
 	}
-	if (RotationEuler.Y() < 0)
+	if (RotationEuler[1] < 0)
 	{ 
 		RotationEuler[1] += 360;
 	}
-	if (RotationEuler.Z() < 0)
+	if (RotationEuler[2] < 0)
 	{
 		RotationEuler[2] += 360;
 	}

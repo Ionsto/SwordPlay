@@ -155,9 +155,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 				//gm->world->Camera->setTarget(vector3df(0, 0, 0));
 			}
 		}
-		//std::cout << ",X:" << X << ",Y:" << Y << ",Z:" << Z << "\n";
+		std::cout << ",RX:" << RX << ",RY:" << RY << ",RZ:" << RZ << "\n";
 		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
-		//gm->world->ObjectArray[id]->Node->updateAbsolutePosition();
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY,RZ));
 		if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{

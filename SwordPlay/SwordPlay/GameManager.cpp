@@ -93,14 +93,14 @@ void GameManager::Update()
 			float rotpowwwwweeerr = 10;
 			if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
 			{
-				world->Player.QuedBodyRotation.Y = rotpowwwwweeerr;
+				world->Player.QuedBodyRotation.X = rotpowwwwweeerr;
 				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
 				//world->Camera->updateAbsolutePosition();
 				//world->Camera->setRotation(vector3df(50, 0, 0));
 			}
 			if (this->KeyListener.IsKeyDown(KEY_KEY_E))
 			{
-				world->Player.QuedBodyRotation.Y = -rotpowwwwweeerr;
+				world->Player.QuedBodyRotation.X = -rotpowwwwweeerr;
 				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
 				//world->Camera->updateAbsolutePosition();
 				//world->Camera->setRotation(vector3df(50, 0, 0));
