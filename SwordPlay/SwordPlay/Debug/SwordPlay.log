@@ -1,71 +1,22 @@
-﻿Build started 08/11/2014 14:43:06.
-     1>Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" on node 2 (Build target(s)).
+﻿Build started 09/11/2014 18:37:11.
+     1>Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameManager.cpp
-         GameManager.cpp
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\clientconnection.h(28): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\clientconnection.h(30): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(81): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(82): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(86): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(87): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(110): warning C4244: 'initializing' : conversion from 'irr::s32' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(111): warning C4244: 'initializing' : conversion from 'irr::s32' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(131): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(135): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(135): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(136): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(136): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(137): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(137): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(138): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(138): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(139): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(139): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(140): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(140): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(142): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(142): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(143): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(143): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(144): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(144): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(145): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(145): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(146): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(146): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(147): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(147): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(161): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(161): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(162): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(162): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(163): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(163): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(164): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(164): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(165): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(165): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(166): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(166): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(168): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(169): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(170): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(171): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(172): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
-     1>c:\users\mpfs\documents\github\swordplay\swordplay\swordplay\gamemanager.cpp(173): warning C4244: '=' : conversion from 'float' to 'enet_uint8', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ClientConnection.cpp
+         ClientConnection.cpp
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.h(28): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\clientconnection.h(30): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\mpfs\contacts\documents\github\swordplay\swordplay\swordplay\gui.h(24): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe" /INCREMENTAL /NOLOGO enet.lib Irrlicht.lib ws2_32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.lib" /MACHINE:X86 Debug\ClientConnection.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe" /INCREMENTAL /NOLOGO enet.lib Irrlicht.lib ws2_32.lib winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.lib" /MACHINE:X86 Debug\ClientConnection.obj
          Debug\GameManager.obj
          Debug\Gui.obj
          Debug\GuiMain.obj
          Debug\Main.obj
          Debug\Object.obj
          Debug\World.obj
-     1>LINK : fatal error LNK1168: cannot open C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe for writing
-     1>Done Building Project "C:\Users\mpfs\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" (Build target(s)) -- FAILED.
+         SwordPlay.vcxproj -> C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\Debug\SwordPlay.exe
+     1>Done Building Project "C:\Users\mpfs\Contacts\Documents\GitHub\SwordPlay\SwordPlay\SwordPlay\SwordPlay.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:04.20
+Time Elapsed 00:00:02.21

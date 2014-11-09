@@ -112,18 +112,18 @@ void World::Update(ServerManager * sm)
 }
 void World::SpawnPlayer(int playerid)
 {
-	float OffsetX = 0, OffsetY = 10, OffsetZ = 0;
+	float OffsetX = 0, OffsetY = 0, OffsetZ = 0;
 	float LegHeight = 10;
-	float LegWidth = 5;
+	float LegWidth = 2;
 	float BodyHeight = 10;
-	/*
+	
 	Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Init(this, OffsetX + LegWidth, OffsetY, OffsetZ);
-	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Mesh = 1;
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerL]]->Mesh = 3;
 	Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR]]->Init(this, OffsetX - LegWidth, OffsetY, OffsetZ);
-	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR]]->Mesh = 1;
-
+	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegLowerR]]->Mesh = 3;
+	/*
 	Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL] = AddObject(new Object(this));
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL]]->Init(this, OffsetX + LegWidth, OffsetY + LegHeight, OffsetZ);
 	ObjectArray[Players[playerid]->BodyPartIds[Sword_PlayerId_LegUpperL]]->Mesh = 1;

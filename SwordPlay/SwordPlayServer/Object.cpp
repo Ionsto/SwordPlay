@@ -52,10 +52,10 @@ void Object::Update(World * world)
 	UpdateRotation();
 	//RotationEuler[1] += 1;
 	NormaliseEulerRotation();
-	if (QuedMoveRot.X() != 0 || QuedMoveRot.Y() != 0 || QuedMoveRot.Z() != 0)
+	/*if (QuedMoveRot.X() != 0 || QuedMoveRot.Y() != 0 || QuedMoveRot.Z() != 0)
 	{
 		std::cout << RotationEuler[0] << "," << RotationEuler[1] << "," << RotationEuler[2] << "," << "\n";
-	}
+	}*/
 	QuedMovePos.Set(0, 0, 0);
 	QuedMoveRot.Set(0, 0, 0);
 	//RotationEuler[0] = 0;

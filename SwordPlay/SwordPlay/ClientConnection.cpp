@@ -96,7 +96,7 @@ void ClientConnection::GetInfomation(GameManager * gm)
 {
 	ENetEvent event;
 	int Count = 0;
-	while (enet_host_service(client, &event, 0) > 0 && Count++ < 30)
+	while (enet_host_service(client, &event, 0) > 0 && Count++ < 100)
 	{
 	switch (event.type) {
 	case ENET_EVENT_TYPE_RECEIVE:
@@ -155,9 +155,9 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 				//gm->world->Camera->setTarget(vector3df(0, 0, 0));
 			}
 		}
-		std::cout << ",RX:" << RX << ",RY:" << RY << ",RZ:" << RZ << "\n";
-		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
-		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY,RZ));
+		//std::cout << ",RX:" << RX << ",RY:" << RY << ",RZ:" << RZ << "\n";
+		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Z, Y));
+		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RZ,RY));
 		if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
 			//gm->world->MoveCamera(vector3df(X, Y + 5, Z), vector3df(RX, RY, RZ));
