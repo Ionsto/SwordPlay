@@ -156,7 +156,7 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 			}
 		}
 		//std::cout << ",RX:" << RX << ",RY:" << RY << ",RZ:" << RZ << "\n";
-		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Z, Y));
+		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RZ,RY));
 		if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
