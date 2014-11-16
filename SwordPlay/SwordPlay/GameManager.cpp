@@ -70,11 +70,11 @@ void GameManager::Update()
 			if (theta > 360){ theta -= 360; }
 			if (this->KeyListener.IsKeyDown(KEY_KEY_A))
 			{
-				world->Player.QuedBodyMovement.X = poooowwwwwerrrr;
+				world->Player.QuedBodyMovement.Z = poooowwwwwerrrr;
 			}
 			if (this->KeyListener.IsKeyDown(KEY_KEY_D))
 			{
-				world->Player.QuedBodyMovement.X = -poooowwwwwerrrr;
+				world->Player.QuedBodyMovement.Z = -poooowwwwwerrrr;
 			}
 			if (this->KeyListener.IsKeyDown(KEY_KEY_W))
 			{
@@ -93,14 +93,16 @@ void GameManager::Update()
 			float rotpowwwwweeerr = 10;
 			if (this->KeyListener.IsKeyDown(KEY_KEY_Q))
 			{
-				world->Player.QuedBodyRotation.X = rotpowwwwweeerr;
+				//world->ObjectArray[world->Player.PlayerObjectIds[Sword_PlayerId_Head]]->Node->setRotation(world->ObjectArray[world->Player.PlayerObjectIds[Sword_PlayerId_Head]]->Node->getRotation() + vector3df(0,1,0));
+				//world->Player.QuedBodyRotation.X = rotpowwwwweeerr;
 				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, 0.1, 0));
 				//world->Camera->updateAbsolutePosition();
 				//world->Camera->setRotation(vector3df(50, 0, 0));
 			}
 			if (this->KeyListener.IsKeyDown(KEY_KEY_E))
 			{
-				world->Player.QuedBodyRotation.X = -rotpowwwwweeerr;
+				//world->ObjectArray[world->Player.PlayerObjectIds[Sword_PlayerId_Head]]->Node->setRotation(world->ObjectArray[world->Player.PlayerObjectIds[Sword_PlayerId_Head]]->Node->getRotation() + vector3df(0, -1, 0));
+				//world->Player.QuedBodyRotation.X = -rotpowwwwweeerr;
 				//world->MoveCamera(world->Camera->getPosition() + vector3df(0, -0.1, 0));
 				//world->Camera->updateAbsolutePosition();
 				//world->Camera->setRotation(vector3df(50, 0, 0));
