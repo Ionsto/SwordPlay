@@ -50,7 +50,7 @@ void Object::Update(World * world)
 		PhysicsBody->ApplyTwist(QuedMoveRot);
 	}
 	//UpdateRotation();
-	RotationEuler[1] += 1;
+	RotationEuler[0] += 1;
 	NormaliseEulerRotation();
 	/*if (QuedMoveRot.X() != 0 || QuedMoveRot.Y() != 0 || QuedMoveRot.Z() != 0)
 	{

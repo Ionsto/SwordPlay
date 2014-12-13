@@ -156,8 +156,8 @@ void ClientConnection::ParsePacket(GameManager * gm, ENetEvent event)
 			}
 		}
 		//std::cout << ",RX:" << RX << ",RY:" << RY << ",RZ:" << RZ << "\n";
-		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		gm->world->ObjectArray[id]->Node->setRotation(vector3df(RX, RY,RZ));
+		gm->world->ObjectArray[id]->Node->setPosition(vector3df(X, Y, Z));
 		if (gm->world->Player.PlayerObjectIds[Sword_PlayerId_Head] != -1)
 		{
 			//gm->world->MoveCamera(vector3df(X, Y + 5, Z), vector3df(RX, RY, RZ));
